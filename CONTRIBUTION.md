@@ -14,6 +14,9 @@ pre-commit install
 ```
 - This will setup the project requirements and pre-commit test hooks!
 
+#### Note
+- If you are adding any new requirements for the project, make sure that you are adding it to ```requirements.txt```
+
 ## Project Directory structure
 ```bash
    your-folder
@@ -22,3 +25,7 @@ pre-commit install
      |-requirements.txt
      |-.pre-commit-config.yml
 ```
+
+### To keep your fork master insync, use these -
+- [Add Upstream to your clone] (https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/configuring-a-remote-for-a-fork)
+- [Syncing with upstream] (https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
