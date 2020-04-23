@@ -1,7 +1,9 @@
 import json
 import requests
 
-TOKEN='1280941009:AAE_WdaR3-xuVerRQO-1aABjlUmMptquXq8'
+TOKEN='' #add your bots token
+
+CHAT_ID= #add "-" before chat IDs for groups
 
 URL = "https://api.telegram.org/bot{}/".format(TOKEN)
 
@@ -28,7 +30,7 @@ def chat_id_and_text(updates):
     num_updates = len(updates["result"])
     for i in range(num_updates - 1, -1, -1):
         chat_id = updates["result"][i]["message"]["chat"]["id"]
-        if chat_id == -451393390 :
+        if chat_id == CHAT_ID :
             text = updates["result"][i]["message"]["text"]
             print(text, chat_id)
 
