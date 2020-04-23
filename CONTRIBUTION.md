@@ -27,5 +27,5 @@ pre-commit install
 ```
 
 ### To keep your fork master insync, use these -
-- [Add Upstream to your clone] (https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/configuring-a-remote-for-a-fork)
-- [Syncing with upstream] (https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
+- [Add Upstream to your clone](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/configuring-a-remote-for-a-fork)
+- [Syncing with upstream](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
