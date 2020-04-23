@@ -29,10 +29,14 @@ def get_updates():
 def chat_id_and_text(updates):
     num_updates = len(updates["result"])
     for i in range(num_updates - 1, -1, -1):
-        chat_id = updates["result"][i]["message"]["chat"]["id"]
-        if chat_id == CHAT_ID :
+        try:
+            typeof=updates["result"][i]["message"]["entities"][0]["type"]
+        except KeyError:
+            typeof=False
+        if updates["result"][i]["message"]["chat"]["id"] == CHAT_ID and typeof == 'url':
             text = updates["result"][i]["message"]["text"]
-            print(text, chat_id)
+            text_entities = updates["result"][i]["message"]["entities"][0]["type"]
+            print(text, text_entities)
 
 chat_id_and_text(get_updates())
 
