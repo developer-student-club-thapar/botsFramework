@@ -1,5 +1,6 @@
 import json
 import requests
+import csv
 
 TOKEN='' #add your bots token
 
@@ -25,20 +26,22 @@ def get_updates():
     js = get_json_from_url(url)
     return js
 
+# def add_to_csv(message, 
 
 def chat_id_and_text(updates):
     num_updates = len(updates["result"])
     for i in range(num_updates - 1, -1, -1):
-        try:
-            typeof=updates["result"][i]["message"]["entities"][0]["type"]
-        except KeyError:
-            typeof=False
-        if updates["result"][i]["message"]["chat"]["id"] == CHAT_ID and typeof == 'url':
-            text = updates["result"][i]["message"]["text"]
-            text_entities = updates["result"][i]["message"]["entities"][0]["type"]
-            print(text, text_entities)
-
+        if updates["result"][i]["message"]["chat"]["id"] == CHAT_ID:
+            try:
+                entities=updates["result"][i]["message"]["entities"]
+                for j in range (0,len(updates["result"][i]["message"]["entities"])):
+                    if updates["result"][i]["message"]["entities"][j]["type"]== "url":
+                        text = updates["result"][i]["message"]["text"].encode('ascii', 'ignore').decode('ascii')
+                        text_entities = updates["result"][i]["message"]["entities"][0]["type"]
+                        print(text, text_entities)
+            except KeyError:
+                print('no url')
+                
 chat_id_and_text(get_updates())
-
 
                            
