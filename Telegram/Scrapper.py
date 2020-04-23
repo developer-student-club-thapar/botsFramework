@@ -1,6 +1,7 @@
 import json
 import requests
 import csv
+import time
 
 TOKEN='' #add your bots token
 
@@ -21,14 +22,22 @@ def get_json_from_url(url):
     return js
 
 
-def get_updates():
+def get_updates(offset=None):
     url = URL + "getUpdates"
+    if offset:
+        url += "?offset={}".format(offset)
     js = get_json_from_url(url)
     return js
 
-# def add_to_csv(message, 
+# def add_to_csv(update_id, message_test, group_name)
+    
+def get_last_update_id(updates):
+    update_ids = []
+    for update in updates["result"]:
+        update_ids.append(int(update["update_id"]))
+    return max(update_ids)
 
-def chat_id_and_text(updates):
+def contain_url(updates):
     num_updates = len(updates["result"])
     for i in range(num_updates - 1, -1, -1):
         if updates["result"][i]["message"]["chat"]["id"] == CHAT_ID:
@@ -36,12 +45,28 @@ def chat_id_and_text(updates):
                 entities=updates["result"][i]["message"]["entities"]
                 for j in range (0,len(updates["result"][i]["message"]["entities"])):
                     if updates["result"][i]["message"]["entities"][j]["type"]== "url":
-                        text = updates["result"][i]["message"]["text"].encode('ascii', 'ignore').decode('ascii')
-                        text_entities = updates["result"][i]["message"]["entities"][0]["type"]
-                        print(text, text_entities)
+                        text_s = updates["result"][i]["message"]["text"].encode('ascii', 'ignore').decode('ascii')
+                        text_entities = updates["result"][i]["message"]["entities"][j]["type"]
+                        print(text_s, text_entities)
             except KeyError:
                 print('no url')
-                
-chat_id_and_text(get_updates())
+def get_last_chat_id_and_text(updates):
+    num_updates = len(updates["result"])
+    last_update = num_updates - 1
+    text = updates["result"][last_update]["message"]["text"]
+    chat_id = updates["result"][last_update]["message"]["chat"]["id"]
+    return (text, chat_id)
+   
+def main():
+    last_update_id = None
+    while True:
+        updates = get_updates(last_update_id)
+        if len(updates["result"]) > 0:
+            last_update_id = get_last_update_id(updates) + 1
+            contain_url(updates)
+        time.sleep(0.5)
 
+
+if __name__ == '__main__':
+    main()
                            
