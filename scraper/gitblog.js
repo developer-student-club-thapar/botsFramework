@@ -23,7 +23,7 @@ request(URL, function (err, res, body) {
             const pheading=$(this).find('.post-item__title').find('a').text();
             const plink=$(this).find('.post-item__title').find('a').attr('href');
             const pdesc=$(this).find('.post-item__excerpt').find('p').text();
-            if(currentdate === date)
+            if(moment(currentdate).format('YYYY-MM-DD') === date)
             {
                 console.log(moment(currentdate).format('YYYY-MM-DD'));
                 console.log(`title :${pheading}`);
