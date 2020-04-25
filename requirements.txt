@@ -1,4 +1,4 @@
-pre-commit==2.2.0
-json
-requests
 csv
+json
+pre-commit==2.2.0
+requests
