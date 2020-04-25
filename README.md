@@ -14,3 +14,6 @@ This repository contains various Slack Bots for various purposes and information
     1. Scraping using metadata
     2. Using Regex
     3. Applying NLP
+
+## Runtime Instructions 
+### Telegram Bot
