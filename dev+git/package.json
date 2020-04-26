@@ -1,0 +1,27 @@
+{
+  "name": "slack-bots",
+  "version": "1.0.0",
+  "description": "a project to make 3 slack-bots",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/specter25/slack-bots.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/specter25/slack-bots/issues"
+  },
+  "homepage": "https://github.com/specter25/slack-bots#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cheerio": "^1.0.0-rc.3",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "moment": "^2.24.0",
+    "request": "^2.88.2"
+  }
+}
