@@ -5,9 +5,10 @@ let final='';
 var URL = "https://dev.to/top/week";
 
 
+const fetchblogs=async(url)=>{
 
 
-request(URL, function (err, res, body) {
+request(url, function (err, res, body) {
     if(err)
     {
         console.log(err);
@@ -35,3 +36,8 @@ request(URL, function (err, res, body) {
 
     }
 }); 
+
+};
+module.exports=fetchblogs;
+
+
