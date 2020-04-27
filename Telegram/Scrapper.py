@@ -50,23 +50,27 @@ def contain_url(updates):
                         print(text_s, text_entities)
             except KeyError:
                 print('no url')
+                
 def get_last_chat_id_and_text(updates):
     num_updates = len(updates["result"])
     last_update = num_updates - 1
     text = updates["result"][last_update]["message"]["text"]
     chat_id = updates["result"][last_update]["message"]["chat"]["id"]
     return (text, chat_id)
+
+contain_url(get_update)
+
    
-def main():
-    last_update_id = None
-    while True:
-        updates = get_updates(last_update_id)
-        if len(updates["result"]) > 0:
-            last_update_id = get_last_update_id(updates) + 1
-            contain_url(updates)
-        time.sleep(0.5)
-
-
-if __name__ == '__main__':
-    main()
+##def main():
+##    last_update_id = None
+##    while True:
+##        updates = get_updates(last_update_id)
+##        if len(updates["result"]) > 0:
+##            last_update_id = get_last_update_id(updates) + 1
+##            contain_url(updates)
+##        time.sleep(0.5)
+##
+##
+##if __name__ == '__main__':
+##    main()
                            
