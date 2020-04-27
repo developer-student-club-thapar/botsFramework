@@ -45,16 +45,15 @@ def contain_url(updates):
             if updates["result"][i]["message"]["chat"]["id"] == CHAT_ID:                
                 entities=updates["result"][i]["message"]["entities"]
         except KeyError:
-                print('no url')
+                pass
         else:
-                try:
-                    for j in range (0,len(updates["result"][i]["message"]["entities"])):
-                        if updates["result"][i]["message"]["entities"][j]["type"]== "url":
-                            text_s = updates["result"][i]["message"]["text"].encode('ascii', 'ignore').decode('ascii')
-                            text_entities = updates["result"][i]["message"]["entities"][j]["type"]
-                            print(text_s, text_entities)
-                except KeyError:
-                        print ('Error')
+            for j in range (0,len(updates["result"][i]["message"]["entities"])):
+                if updates["result"][i]["message"]["entities"][j]["type"]== "url":
+                    text_s = updates["result"][i]["message"]["text"].encode('ascii', 'ignore').decode('ascii')
+                    text_entities = updates["result"][i]["message"]["entities"][j]["type"]
+                    print('\n\n\n\n\n')
+                    print(updates["result"][i]["update_id"])
+                    print(text_s)
                 
 def get_last_chat_id_and_text(updates):
     num_updates = len(updates["result"])
