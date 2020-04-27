@@ -1,11 +1,16 @@
 import json
 import requests
 import csv
-import time
 
-TOKEN='' #add your bots token
+file_content=[]                         #comment if manually add TOKEN and Chat ID
+cred_file = open ("cred.txt", "r")      #comment if manually add TOKEN and Chat ID
+for x in cred_file:                     #comment if manually add TOKEN and Chat ID
+    file_content.append(x[:])           #comment if manually add TOKEN and Chat ID
+cred_file.close()                       #comment if manually add TOKEN and Chat ID
 
-CHAT_ID= #add "-" before chat IDs for groups
+TOKEN=file_content[1].rstrip()          #manually add your bots token
+CHAT_ID=int(file_content[3].rstrip())   #manualy add "-" before chat IDs for groups
+
 
 URL = "https://api.telegram.org/bot{}/".format(TOKEN)
 
@@ -58,7 +63,7 @@ def get_last_chat_id_and_text(updates):
     chat_id = updates["result"][last_update]["message"]["chat"]["id"]
     return (text, chat_id)
 
-contain_url(get_update)
+contain_url(get_updates())
 
    
 ##def main():
