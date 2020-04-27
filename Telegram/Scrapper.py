@@ -1,15 +1,10 @@
 import json
 import requests
 import csv
+from cred import *                          #Comment this line
 
-file_content=[]                         #comment if manually add TOKEN and Chat ID
-cred_file = open ("cred.txt", "r")      #comment if manually add TOKEN and Chat ID
-for x in cred_file:                     #comment if manually add TOKEN and Chat ID
-    file_content.append(x[:])           #comment if manually add TOKEN and Chat ID
-cred_file.close()                       #comment if manually add TOKEN and Chat ID
-
-TOKEN=file_content[1].rstrip()          #manually add your bots token
-CHAT_ID=int(file_content[3].rstrip())   #manualy add "-" before chat IDs for groups
+##TOKEN=                                    #manually add your bots token
+##CHAT_ID=                                  #manualy add "-" before chat IDs for groups
 
 
 URL = "https://api.telegram.org/bot{}/".format(TOKEN)
