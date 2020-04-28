@@ -1,43 +1,56 @@
+const request = require('request-promise');
+// const cheerio = require('cheerio');
+// const fs = require('fs');
+const getTags = require('./route');
+var moment = require('moment');
+moment().format();
 
-const request = require('request');
-const cheerio = require('cheerio');
-let final='';
-var URL = "https://dev.to/top/week";
+var tags = getTags();
 
+const fetchBlogs = async (tag) => {
+  try {
+    let date = encodeURIComponent(moment().subtract(7, 'days').toISOString());
 
-const fetchblogs=async(url)=>{
-
-
-request(url, function (err, res, body) {
-    if(err)
-    {
-        console.log(err);
-    }
-    else
-    {
-        let c=0
-        let $ = cheerio.load(body);  //loading of complete HTML body 
-        $('.single-article').each(function(index)
-        {
-            c=c+1;
-            if(c<11)
-            {
-
-            const plink=$(this).find('.index-article-link').attr('href');
-            const pcontent=$(this).find('.index-article-link').find('.content').find('h3').text();
-            const tags = $(this).find('.tags').find('a').text();
-            console.log(pcontent);
-            console.log(`dev.to${plink}`);
-            console.log(tags);
-            console.log('------------------------------------------------------',c);
-            }
-        }
-        );
-
-    }
-}); 
-
+    let options = {
+      method: 'GET',
+      url: `https://dev.to/search/feed_content?per_page=15&page=0&tag=${tag}&sort_by=positive_reactions_count&sort_direction=desc&tag_names%5B%5D=${tag}&approved=&class_name=Article&published_at%5Bgte%5D=${date}`,
+      headers: {
+        Referer: `https://dev.to/t/${tag}/top/week`,
+      },
+    };
+    const response = await request(options);
+    const responseJson = await JSON.parse(response).result;
+    return responseJson;
+  } catch (e) {
+    console.log(e);
+  }
 };
-module.exports=fetchblogs;
+const getBlogs = async () => {
+  var blogs = {};
 
+  for (let key in tags) {
+    let tag = tags[key];
+    blogs[tag] = await await fetchBlogs(tag);
+  }
+  return blogs;
+};
 
+getBlogs().then((blogs) => {
+  for (let key in blogs) {
+    console.log(key);
+    blogs[key].forEach((blog, i) => {
+      let title = blog.title;
+      let link = `https://dev.to/${blog.path}`;
+      var tags = '';
+      blog.tags.forEach((tag) => (tags = `${tags} #${tag.name}`));
+      console.log(
+        `${
+          i + 1
+        }================================================================================================================================================`
+      );
+      console.log(title);
+      console.log(link);
+      console.log(tags);
+    });
+  }
+});
