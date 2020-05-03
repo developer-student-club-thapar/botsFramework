@@ -2,16 +2,15 @@
 const request = require('request');
 const cheerio = require('cheerio');
 let final='';
-var URL = "https://dev.to/top/week";
 
 
 const rp = require('request-promise');
 
 
-const fetchblogs=async()=>{
+const fetchblogs=async(url)=>{
 
     const options = {
-        uri: `https://github.blog/category/community/open-source/`,
+        uri:url,
         transform: function (body) {
           return cheerio.load(body);
         }
