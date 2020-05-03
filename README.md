@@ -16,6 +16,42 @@ This repository contains various Slack Bots for various purposes and information
     3. Applying NLP
 
 ## Runtime Instructions 
+
+### Scraping Bot (Node)
+	First 5 steps of the execution of both dev.to and gitblog script are the same
+
+	1.$ cd/scraperbot
+	2.$ npm install 
+	3.configure the value of the environment variable  SLACK_TOKEN 
+	4.install the app to your workspace
+	5.add the app to the channel in which you want to deploy the app
+##### Dev.to
+
+	6.now in dev.io/route.js add the following line at the end of code 
+	  slackpost(<channel id>,<url from the given object>);
+	  	  	<channel id>is the id of the channel of your workspace in whivh you want to deploy the bot
+	  		<url> is the dev.to url from which you want to scrape the posts
+	  for eg:-
+	  slackpost('C012WCD3QF4',urlweek.webdev);
+
+	7.now execute the script route.js using the command
+		$node route.js
+	8.Top 10 posts of the week related to the topic of the url will be posted on your channel
+
+##### Github Blogs
+
+	6.now in gitblog/gitroute.js add the following line at the end of code 
+	  slackpost(<channel id>,`https://github.blog/category/community/open-source/`);
+	  	  	<channel id>is the id of the channel of your workspace in whivh you want to deploy the bot
+	  for eg:-
+	  slackpost('C012WCD3QF4',`https://github.blog/category/community/open-source/`);
+
+	7.now execute the script route.js using the command
+		$node route.js
+	8.The posts of the github blogs of that current day will be posted
+
+
+
 ### Telegram Bot
 
 	1. 'Talk' to 'BotFather' in the Telegram app to create a new bot
