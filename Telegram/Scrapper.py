@@ -1,7 +1,5 @@
 import json
 import requests
-import csv
-import time
 
 TOKEN='' #add your bots token
 
