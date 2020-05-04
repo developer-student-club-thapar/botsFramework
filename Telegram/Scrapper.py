@@ -62,8 +62,6 @@ def get_last_chat_id_and_text(updates):
     chat_id = updates["result"][last_update]["message"]["chat"]["id"]
     return (text, chat_id)
 
-contain_url(get_updates())
-
    
 ##def main():
 ##    last_update_id = None
