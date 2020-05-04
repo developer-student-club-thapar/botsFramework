@@ -3,5 +3,6 @@ __pycache__/
 
 node_modules
 
-cred.txt
-cred.py
+Telegram/cred.py
+Telegram/cred.txt
+

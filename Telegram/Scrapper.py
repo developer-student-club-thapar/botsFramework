@@ -1,7 +1,7 @@
 import json
 import requests
-import csv
 from cred import *                          #Comment this line
+
 
 ##TOKEN=                                    #manually add your bots token
 ##CHAT_ID=                                  #manualy add "-" before chat IDs for groups
