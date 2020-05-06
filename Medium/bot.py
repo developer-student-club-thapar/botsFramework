@@ -32,27 +32,43 @@ def say_hello(**payload):
                 channel=channel_id, text=f"Hi <@{user}>!", thread_ts=thread_ts
             )
 
+        elif "text" in data and data["text"].startswith("Medium"):
 
-@RTMClient.run_on(event="message")
-def command(**payload):
-    data = payload["data"]
-    web_client = payload["web_client"]
-    if "text" in data and data["text"].startswith("Medium"):
-        text = data["text"]
-        channel_id = data["channel"]
-        arr = text.split()
+            user = data["user"]
+            invalid_comm_text = f"Hi <@{user}>!\nI don't understand you!!"
 
-        if len(arr) == 2:
-            arr = text.split("=")
-            if "tag" in arr[0].split():
-                tag(arr[1], web_client, channel_id)
+            text = data["text"]
+            channel_id = data["channel"]
+            arr = text.split()
+
+            if len(arr) == 2:
+                arr = text.split("=")
+                if "tag" in arr[0].split():
+                    tag(arr[1], web_client, channel_id)
+                elif "search" in arr[0].split():
+                    search(arr[1], web_client, channel_id)
+                else:
+                    invalidComm(web_client, channel_id, invalid_comm_text)
+            elif len(arr) == 4:
+                if "tag" in arr:
+                    tag(arr[3], web_client, channel_id)
+                elif "search" in arr:
+                    search(arr[3], web_client, channel_id)
+                else:
+                    invalidComm(web_client, channel_id, invalid_comm_text)
+            elif len(arr) == 3:
+                if "tag=" in arr:
+                    tag(arr[2], web_client, channel_id)
+                elif "search=" in arr:
+                    search(arr[2], web_client, channel_id)
+                else:
+                    invalidComm(web_client, channel_id, invalid_comm_text)
             else:
-                search(arr[1], web_client, channel_id)
-        elif len(arr) == 4:
-            if "tag" in arr:
-                tag(arr[3], web_client, channel_id)
-            else:
-                search(arr[3], web_client, channel_id)
+                invalidComm(web_client, channel_id, invalid_comm_text)
+
+
+def invalidComm(web_client, channel_id, invalid_comm_text):
+    web_client.chat_postMessage(channel=channel_id, text=invalid_comm_text)
 
 
 def tag(criteria, web_client, channel_id):
