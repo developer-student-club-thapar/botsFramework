@@ -14,6 +14,8 @@ logging.basicConfig(level=logging.DEBUG)
 
 slack_token = os.environ["SLACK_API_TOKEN"]
 DELAY = 3
+greetings = ["hi", "hello", "hello there", "hey"]
+EXAMPLE_COMM = "Medium What can you do?"
 
 
 @RTMClient.run_on(event="message")
@@ -22,27 +24,69 @@ def say_hello(**payload):
     web_client = payload["web_client"]
 
     if "text" in data:
-        if "Hello" in data["text"]:
-            channel_id = data["channel"]
-            thread_ts = data["ts"]
-            user = data["user"]
-            # This is not username but user ID
-
-            web_client.chat_postMessage(
-                channel=channel_id, text=f"Hi <@{user}>!", thread_ts=thread_ts
-            )
-
-        elif "text" in data and data["text"].startswith("Medium"):
+        if "text" in data and data["text"].startswith("Medium"):
 
             user = data["user"]
-            invalid_comm_text = f"Hi <@{user}>!\nI don't understand you!!"
+            invalid_comm_text = f"Hi <@{user}>!\nNot sure what you mean. Try *{EXAMPLE_COMM}* to know about my capabilities."  # noqa
 
-            text = data["text"]
+            command = data["text"].lower()
             channel_id = data["channel"]
-            arr = text.split()
+            arr = command.split()
 
-            if len(arr) == 2:
-                arr = text.split("=")
+            if len(arr) > 1:
+                for greeting in greetings:
+                    if greeting == arr[1].lower():
+                        response = f"Hi <@{user}>! Try *{EXAMPLE_COMM}*"
+                        web_client.chat_postMessage(
+                            channel=channel_id, text=response
+                        )  # noqa
+                        return
+            else:
+                response = f"Hi <@{user}>! Try *{EXAMPLE_COMM}*"
+                web_client.chat_postMessage(channel=channel_id, text=response)
+                return
+
+            if command.startswith(EXAMPLE_COMM.lower()):
+                response = (
+                    f"Well I was designed to fetch Medium Articles for you!"  # noqa
+                )
+                web_client.chat_postMessage(
+                    channel=channel_id,
+                    blocks=[
+                        {
+                            "type": "section",
+                            "text": {
+                                "type": "mrkdwn",
+                                "text": "Hey there 👋 I'm MediumBot. I'm here to help you fetch articles from Medium directly to Slack.\nThere are two ways to quickly search articles:",  # noqa
+                            },
+                        },
+                        {"type": "divider"},
+                        {
+                            "type": "section",
+                            "text": {
+                                "type": "mrkdwn",
+                                "text": "*1️⃣ Use the `Medium tag` command*. Type `Medium tag = ` followed by the tag for which you need articles. Try it out by using the command in this channel.\nExample - `Medium tag = Web`",  # noqa
+                            },
+                        },
+                        {
+                            "type": "section",
+                            "text": {
+                                "type": "mrkdwn",
+                                "text": "*2️⃣ Use the `Medium search` command* If you want to perform your own search then go ahead and type `Medium searh = ` followed by the search criteria.\n Example - `Medium search = Best coding practices`",  # noqa
+                            },
+                        },
+                        {"type": "divider"},
+                        {
+                            "type": "section",
+                            "text": {
+                                "type": "mrkdwn",
+                                "text": "➕ To start searching, *add me to a channel* and I'll introduce myself. ",  # noqa
+                            },
+                        },
+                    ],
+                )
+            elif len(arr) == 2:
+                arr = command.split("=")
                 if "tag" in arr[0].split():
                     tag(arr[1], web_client, channel_id)
                 elif "search" in arr[0].split():
@@ -65,6 +109,15 @@ def say_hello(**payload):
                     invalidComm(web_client, channel_id, invalid_comm_text)
             else:
                 invalidComm(web_client, channel_id, invalid_comm_text)
+
+
+@RTMClient.run_on(event="channel_joined")
+def Hello(**payload):
+    data = payload["data"]
+    web_client = payload["web_client"]
+    channel_id = data["channel"]["id"]
+    response = f"Howdy-doody! Try `{EXAMPLE_COMM}` to know my capabilities"
+    web_client.chat_postMessage(channel=channel_id, text=response)
 
 
 def invalidComm(web_client, channel_id, invalid_comm_text):
