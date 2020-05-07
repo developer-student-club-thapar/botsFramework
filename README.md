@@ -17,7 +17,7 @@ This repository contains various Slack Bots for various purposes and information
 
 ## Runtime Instructions 
 
-### Scraping Bot (Node)
+### Dev.to and GitHub Pages Bot
 	First 5 steps of the execution of both dev.to and gitblog script are the same
 
 	1.$ cd/scraperbot
@@ -49,7 +49,6 @@ This repository contains various Slack Bots for various purposes and information
 	7.now execute the script route.js using the command
 		$node route.js
 	8.The posts of the github blogs of that current day will be posted
-
 
 
 ### Telegram Bot
