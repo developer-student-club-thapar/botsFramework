@@ -63,7 +63,8 @@ This repository contains various Slack Bots for various purposes and information
 		Assume the bot name is my_bot.
 
 		1- Add the bot to the group.
-		Go to the group, click on group name, click on Add members, in the searchbox search for your bot like this: @my_bot, select your bot and click add.
+		Go to the group, click on group name, click on Add members, in the searchbox search for your 
+		bot like this: @my_bot, select your bot and click add.
 
 		2- Send a dummy message to the bot.
 		You can use this example: /my_id @my_bot
@@ -77,7 +78,7 @@ This repository contains various Slack Bots for various purposes and information
 
 ## Contributors ✨
 
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+Thanks goes to these wonderful people for helping us with the project! :
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
@@ -92,5 +93,3 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
-
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
