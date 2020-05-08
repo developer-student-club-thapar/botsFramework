@@ -1,6 +1,6 @@
 # Slack-Bots
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 This repository contains various Slack Bots for various purposes and information sharing in DSC TIET-GS Slack Channel
 
@@ -85,6 +85,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://github.com/akshit-mee"><img src="https://avatars3.githubusercontent.com/u/62721801?v=4" width="100px;" alt=""/><br /><sub><b>Akshit Gupta</b></sub></a><br /><a href="#infra-akshit-mee" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/developer-student-club-thapar/slack-bots/commits?author=akshit-mee" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/Saurav-Shrivastav"><img src="https://avatars1.githubusercontent.com/u/54510448?v=4" width="100px;" alt=""/><br /><sub><b>Saurav-Shrivastav</b></sub></a><br /><a href="#infra-Saurav-Shrivastav" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/developer-student-club-thapar/slack-bots/commits?author=Saurav-Shrivastav" title="Code">💻</a></td>
   </tr>
 </table>
 
