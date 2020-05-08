@@ -1,4 +1,7 @@
 # Slack-Bots
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 This repository contains various Slack Bots for various purposes and information sharing in DSC TIET-GS Slack Channel
 
 ## Current goals for the project are:
@@ -71,3 +74,22 @@ This repository contains various Slack Bots for various purposes and information
 		4- Look for "chat":{"id":-zzzzzzzzzz,
 		-zzzzzzzzzz is your chat id (with the negative sign).
 	5. Add your Chat ID and bot Token to Telegram/scrapper.py
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/akshit-mee"><img src="https://avatars3.githubusercontent.com/u/62721801?v=4" width="100px;" alt=""/><br /><sub><b>Akshit Gupta</b></sub></a><br /><a href="#infra-akshit-mee" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/developer-student-club-thapar/slack-bots/commits?author=akshit-mee" title="Code">💻</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!

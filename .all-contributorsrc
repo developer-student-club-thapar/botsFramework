@@ -1,0 +1,25 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "akshit-mee",
+      "name": "Akshit Gupta",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/62721801?v=4",
+      "profile": "https://github.com/akshit-mee",
+      "contributions": [
+        "infra",
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "slack-bots",
+  "projectOwner": "developer-student-club-thapar",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
