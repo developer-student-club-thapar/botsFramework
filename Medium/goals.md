@@ -13,3 +13,4 @@ This particular project has been further divided into smaller milestones!
 - [ ] Design a message block with the BlockKit Builder of Slack
 - [ ] Apply the Block
 - [ ] Allow channels to Subscribe to a particular tag and make the bot post the articles on that tag regularly
+- [ ] Setup AWS Lambda
