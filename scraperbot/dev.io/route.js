@@ -1,4 +1,5 @@
-const fetchblogs=require('./devto');
+
+const slackpost=require('../bot/bot');
 const urlweek={
     webdev:"https://dev.to/t/webdev/top/week",
     python:"https://dev.to/t/python/top/week",
@@ -14,4 +15,5 @@ const urlweek={
     machineLearning:"https://dev.to/t/machinelearning/top/week",
     startup:"https://dev.to/t/startup"
 }
-fetchblogs(urlweek.webdev);
+
+slackpost('C012WCD3QF4',urlweek.webdev);
