@@ -5,7 +5,6 @@ import os
 import sys
 import traceback
 from slack import RTMClient
-import time
 
 import logging
 
@@ -132,30 +131,156 @@ def tag(criteria, web_client, channel_id):
         channel=channel_id, text=f"Here are your results for *{criteria}*",
     )
 
-    for link in result:
-        if i == 2:
-            break
-        link = link.split("?")[0]
-
-        web_client.chat_postMessage(
-            channel=channel_id, text=link,
-        )
+    for article in result:
+        if "img" in result[i]:
+            web_client.chat_postMessage(
+                channel=channel_id,
+                blocks=[
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": f"*<{result[i]['link']}|{result[i]['title']}>* ",  # noqa
+                        },
+                    },
+                    {
+                        "type": "context",
+                        "elements": [
+                            {
+                                "type": "mrkdwn",
+                                "text": f"* By {result[i]['author']}* \n{result[i]['read_time']}",  # noqa
+                            }
+                        ],
+                    },
+                    {
+                        "type": "image",
+                        "title": {
+                            "type": "plain_text",
+                            "text": "Image",
+                            "emoji": True,
+                        },  # noqa
+                        "image_url": f"{result[i]['img']}",
+                        "alt_text": "Image",
+                    },
+                ],
+            )
+        else:
+            web_client.chat_postMessage(
+                channel=channel_id,
+                blocks=[
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": f"*<{result[i].link}|{result[i].title}>* ",
+                        },
+                    },
+                    {
+                        "type": "context",
+                        "elements": [
+                            {
+                                "type": "mrkdwn",
+                                "text": f"* By {result[i].author}* \n{result[i].read_time}",  # noqa
+                            }
+                        ],
+                    },
+                ],
+            )
         i += 1
-        time.sleep(DELAY)
 
 
 def search(criteria, web_client, channel_id):
     result = search_scrape(criteria)
 
     web_client.chat_postMessage(
-        channel=channel_id, text=f"Here are your results for *{criteria}*",
+        channel=channel_id,
+        text=f"How many articles do you want me to fetch? (Maximum number of articles that can be fetched is 10)\n Example reply - 2",  # noqa
     )
 
-    for link in result:
-        web_client.chat_postMessage(
-            channel=channel_id, text=link,
-        )
-        time.sleep(DELAY)
+    @RTMClient.run_on(event="message")
+    def send_articles(**payload):
+        data = payload["data"]
+        web_client = payload["web_client"]
+
+        if "text" in data:
+            arr = data["text"].split()
+            if "text" in data and len(arr) == 1:
+                try:
+                    num = int(arr[0])
+
+                    web_client.chat_postMessage(
+                        channel=channel_id,
+                        text=f"Here are your results for *{criteria}*",
+                    )
+                    i = 0
+                    for article in result:
+                        if i == num:
+                            break
+                        if "img" in result[i]:
+                            web_client.chat_postMessage(
+                                channel=channel_id,
+                                blocks=[
+                                    {
+                                        "type": "section",
+                                        "text": {
+                                            "type": "mrkdwn",
+                                            "text": f"*<{result[i]['link']}|{result[i]['title']}>* ",  # noqa
+                                        },
+                                    },
+                                    {
+                                        "type": "context",
+                                        "elements": [
+                                            {
+                                                "type": "mrkdwn",
+                                                "text": f"* By {result[i]['author']}* \n{result[i]['read_time']}",  # noqa
+                                            }
+                                        ],
+                                    },
+                                    {
+                                        "type": "image",
+                                        "title": {
+                                            "type": "plain_text",
+                                            "text": "Image",
+                                            "emoji": True,
+                                        },
+                                        "image_url": f"{result[i]['img']}",
+                                        "alt_text": "Image",
+                                    },
+                                ],
+                            )
+                        else:
+                            web_client.chat_postMessage(
+                                channel=channel_id,
+                                blocks=[
+                                    {
+                                        "type": "section",
+                                        "text": {
+                                            "type": "mrkdwn",
+                                            "text": f"*<{result[i].link}|{result[i].title}>* ",  # noqa
+                                        },
+                                    },
+                                    {
+                                        "type": "context",
+                                        "elements": [
+                                            {
+                                                "type": "mrkdwn",
+                                                "text": f"* By {result[i].author}* \n{result[i].read_time}",  # noqa
+                                            }
+                                        ],
+                                    },
+                                ],
+                            )
+                        i += 1
+                except Exception:
+                    web_client.chat_postMessage(
+                        channel=channel_id, text=f"Invalid Reply",
+                    )
+
+        # for link in result:
+        #     web_client.chat_postMessage(
+        #         channel=channel_id, text=link,
+        #     )
+        #     time.sleep(DELAY)
 
 
 def main():
