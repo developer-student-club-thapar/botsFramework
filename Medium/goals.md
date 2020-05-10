@@ -9,7 +9,7 @@ This particular project has been further divided into smaller milestones!
 - [x] Build a basic bot to get you articles based on a particular search criteria
 - [x] Add more interactivity in the form of Invalid commands
 - [x] Add a message about what the bot can do
-- [ ] Return more details in the form of an object
+- [x] Return more details in the form of an object
 - [ ] Design a message block with the BlockKit Builder of Slack
 - [ ] Apply the Block
 - [ ] Allow channels to Subscribe to a particular tag and make the bot post the articles on that tag regularly
