@@ -15,7 +15,7 @@ const slackpost=async(channel,url)=>{
      // See: https://api.slack.com/methods/chat.postMessage
      fetchdevblogs(url).then(async (final)=>{
         // console.log(final);
-        res = await web.chat.postMessage({ channel: conversationId, text: final });
+        res = await web.chat.postMessage({ channel: conversationId, blocks: final });
 
     });
      // `res` contains information about the posted message
