@@ -1,7 +1,7 @@
 const { WebClient } = require('@slack/web-api');
 const fetchGitBlogs=require('../gitblog')
 // An access token (from your Slack app or custom integration - xoxp, xoxb)
-const token = process.env.SLACK_TOKENGIT || 'xoxb-1050098717749-1101031088131-mV3FwD94rQEqleuTq6xEU6zB';
+const token = process.env.SLACK_TOKENGIT ;
     
 const web = new WebClient(token);
 
