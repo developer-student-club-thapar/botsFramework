@@ -56,7 +56,7 @@ def contain_url(updates):
                     print(updates["result"][i]["update_id"])
                     print(text_s)
                     input_data=[text_s,url,updates["result"][i]["update_id"],]
-                    if message[-1][0]!=input_data[0]:
+                    if input_data not in message:
                         message.append(input_data[:])
                         
                 
