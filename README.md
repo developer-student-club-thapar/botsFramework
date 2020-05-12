@@ -21,7 +21,7 @@ This repository contains various Slack Bots for various purposes and information
 ## Runtime Instructions 
 
 	
-#### Dev.to
+### Dev.to
 	1.$ cd/dev.to
 	2.$ npm install 
 	3.configure the value of the environment variable  SLACK_TOKENDEV
@@ -40,7 +40,7 @@ This repository contains various Slack Bots for various purposes and information
 		$node route.js
 	8.Top 10 posts of the week related to the topic of the url will be posted on your channel
 
-#### Github Blogs
+### Github Blogs
 	1.$ cd/gitblog
 	2.$ npm install 
 	3.configure the value of the environment variable  SLACK_TOKENGIT
