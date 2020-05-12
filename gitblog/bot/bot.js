@@ -1,8 +1,7 @@
 const { WebClient } = require('@slack/web-api');
-const fetchdevblogs=require('../dev.io/devto');
-const fetchGitBlogs=require('../gitblog/gitblog')
+const fetchGitBlogs=require('../gitblog')
 // An access token (from your Slack app or custom integration - xoxp, xoxb)
-const token = process.env.SLACK_TOKEN || 'xoxb-1050098717749-1101031088131-EGwEDBV23ZrKIcDQPszfzBrU';
+const token = process.env.SLACK_TOKENGIT ;
     
 const web = new WebClient(token);
 
@@ -14,9 +13,9 @@ const slackpost=async(channel,url)=>{
     (async () => {
         let res;
      // See: https://api.slack.com/methods/chat.postMessage
-     fetchdevblogs(url).then(async (final)=>{
+     fetchGitBlogs(url).then(async (final)=>{
         // console.log(final);
-        res = await web.chat.postMessage({ channel: conversationId, text: final });
+        res = await web.chat.postMessage({ channel: conversationId, blocks: final });
 
     });
      // `res` contains information about the posted message
