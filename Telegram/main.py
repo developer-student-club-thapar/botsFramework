@@ -2,4 +2,6 @@ from Scrapper import *
 from Slack_Intigrater import *
 
 contain_url(get_updates())
-serve_slack("sample text")
+for i in message:
+    serve_slack(i[0])
+    print(i)
