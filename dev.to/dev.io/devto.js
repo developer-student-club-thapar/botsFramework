@@ -25,17 +25,18 @@ const fetchdevblogs=async(url)=>{
         "type": "divider"
     };
     // console.log($);
-    $('.single-article').each(function(index)
+    $('.crayons-story').each(function(index)
     {
         c=c+1;
         if(c<11)
         {
 
-        const plink=$(this).find('.index-article-link').attr('href');
-        const pcontent=$(this).find('.index-article-link').find('.content').find('h3').text();
-        const tags = $(this).find('.tags').find('a').text();
-        const reading =$(this).find('.article-reading-time').text();
-        const likes=$(this).find('.reactions-count').find('.engagement-count-number').text().trim();
+        const plink=$(this).find('.crayons-story__title').find('a').attr('href');
+        const pcontent=$(this).find('.crayons-story__title').find('a').text();
+        const tags = $(this).find('.crayons-story__tags').find('a').text();
+        const reading =$(this).find('.crayons-story__save').find('small').text();
+        const likes=$(this).find('.crayons-btn--icon-left').text().trim().substring(22,27).trim();
+        console.log(likes);
         const dates=$(this).find('time').text().trim();
         
         // console.log(typeof(tags));
