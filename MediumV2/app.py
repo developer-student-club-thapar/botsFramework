@@ -2,7 +2,8 @@ from scraping import tag_search_scrape  # search_scrape
 import secrets
 
 
-from flask import Flask
+from flask import Flask, Response
+from threading import Thread
 from slackeventsapi import SlackEventAdapter
 from slack import WebClient
 import json
@@ -40,83 +41,89 @@ slack_events_adapter = SlackEventAdapter(
 
 @slack_events_adapter.on("app_mention")
 def handle_message(event_data):
-    message = event_data["event"]
-    if message.get("subtype") is None:
-        command = message.get("text")
-        channel_id = message["channel"]
-        if any(item in command.lower() for item in greetings):
-            message = "Hello <@%s>! :tada:" % message["user"]
-            slack_client.chat_postMessage(channel=channel_id, text=message)
-        elif "tag" in message.get("text"):
-            criteria = command.split("=")[1].strip()
-            result = tag_search_scrape(criteria)
-            i = 0
+    def send_reply(value):
+        event_data = value
+        message = event_data["event"]
+        if message.get("subtype") is None:
+            command = message.get("text")
+            channel_id = message["channel"]
+            if any(item in command.lower() for item in greetings):
+                message = "Hello <@%s>! :tada:" % message["user"]
+                slack_client.chat_postMessage(channel=channel_id, text=message)
+            elif "tag" in message.get("text"):
+                criteria = command.split("=")[1].strip()
+                result = tag_search_scrape(criteria)
+                i = 0
 
-            slack_client.chat_postMessage(
-                channel=channel_id,
-                text=f"Here are your results for *{criteria}*",  # noqa
-            )
+                slack_client.chat_postMessage(
+                    channel=channel_id,
+                    text=f"Here are your results for *{criteria}*",  # noqa
+                )
 
-            for article in result:
-                if i == 3:
-                    break
-                if "img" in result[i]:
-                    slack_client.chat_postMessage(
-                        channel=channel_id,
-                        blocks=[
-                            {
-                                "type": "section",
-                                "text": {
-                                    "type": "mrkdwn",
-                                    "text": f"*<{result[i]['link']}|{result[i]['title']}>* ",  # noqa
-                                },
-                            },
-                            {
-                                "type": "context",
-                                "elements": [
-                                    {
+                for article in result:
+                    if i == 3:
+                        break
+                    if "img" in result[i]:
+                        slack_client.chat_postMessage(
+                            channel=channel_id,
+                            blocks=[
+                                {
+                                    "type": "section",
+                                    "text": {
                                         "type": "mrkdwn",
-                                        "text": f"* By {result[i]['author']}* \n{result[i]['read_time']}",  # noqa
-                                    }
-                                ],
-                            },
-                            {
-                                "type": "image",
-                                "title": {
-                                    "type": "plain_text",
-                                    "text": "Image",
-                                    "emoji": True,
-                                },  # noqa
-                                "image_url": f"{result[i]['img']}",
-                                "alt_text": "Image",
-                            },
-                        ],
-                    )
-                else:
-                    slack_client.chat_postMessage(
-                        channel=channel_id,
-                        blocks=[
-                            {
-                                "type": "section",
-                                "text": {
-                                    "type": "mrkdwn",
-                                    "text": f"*<{result[i].link}|{result[i].title}>* ",  # noqa
+                                        "text": f"*<{result[i]['link']}|{result[i]['title']}>* ",  # noqa
+                                    },
                                 },
-                            },
-                            {
-                                "type": "context",
-                                "elements": [
-                                    {
+                                {
+                                    "type": "context",
+                                    "elements": [
+                                        {
+                                            "type": "mrkdwn",
+                                            "text": f"* By {result[i]['author']}* \n{result[i]['read_time']}",  # noqa
+                                        }
+                                    ],
+                                },
+                                {
+                                    "type": "image",
+                                    "title": {
+                                        "type": "plain_text",
+                                        "text": "Image",
+                                        "emoji": True,
+                                    },  # noqa
+                                    "image_url": f"{result[i]['img']}",
+                                    "alt_text": "Image",
+                                },
+                            ],
+                        )
+                    else:
+                        slack_client.chat_postMessage(
+                            channel=channel_id,
+                            blocks=[
+                                {
+                                    "type": "section",
+                                    "text": {
                                         "type": "mrkdwn",
-                                        "text": f"* By {result[i].author}* \n{result[i].read_time}",  # noqa
-                                    }
-                                ],
-                            },
-                        ],
-                    )
-                i += 1
-        elif "search" in message.get("text"):
-            print("idhar search karna hai")
+                                        "text": f"*<{result[i].link}|{result[i].title}>* ",  # noqa
+                                    },
+                                },
+                                {
+                                    "type": "context",
+                                    "elements": [
+                                        {
+                                            "type": "mrkdwn",
+                                            "text": f"* By {result[i].author}* \n{result[i].read_time}",  # noqa
+                                        }
+                                    ],
+                                },
+                            ],
+                        )
+                    i += 1
+            elif "search" in message.get("text"):
+                print("idhar search karna hai")
+
+    thread = Thread(target=send_reply, kwargs={"value": event_data})
+    thread.start()
+    return Response(status=200)
 
 
 # Start the server on port 3000
