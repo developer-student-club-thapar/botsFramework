@@ -1,9 +1,16 @@
-# Slack-Bots
+<div align = "center">
+
+<img height=200px src= "https://github.com/developer-student-club-thapar/officialWebsite/blob/master/Frontend/src/assets/dsc_logo.png">
+
+<h1>DEVELOPER STUDENT CLUBS TIET</h1>
+
+# Slack Bots
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 This repository contains various Slack Bots for various purposes and information sharing in DSC TIET-GS Slack Channel
 
+</div>
 ## Current goals for the project are:
 
 3 different chat bots to be developed,
