@@ -14,9 +14,77 @@
 [![License](https://img.shields.io/github/license/TezRomacH/python-package-template)](hhttps://github.com/developer-student-club-thapar/slack-bots/blob/master/LICENSE)
 [![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 
-This repository contains various Slack Bots for various purposes and information sharing in DSC TIET-GS Slack Channel
+This repository contains various information retrieval bots for educational purposes. The bots are server and being currently used in DSC TIET Slack Channel and we serve the following information -
+- Information about various hackathons
+- Articles from Medium
+- Articles from Dev.to
+- Articles from Git Blogs
 
 </div>
+
+Installation and Setup
+------------
+### Setup and running of project (Backend)
+
+- Fork the repo and clone it.
+- Go in the repo and setup virtualenvironment using
+  `python -m virtualenv env`
+- Then activate the environment using
+  `source env/Scripts/activate` (Use only `env/Scripts/activate` if on cmd or powershell)
+- At the root of your project directory
+```bash
+ - pip install -r requirements.txt
+ - pre-commit install
+```
+- This will setup the project requirements and pre-commit test hooks!
+
+- After the above setup, run
+```bash
+ - python manage.py makemigrations
+ - python manage.py migrate
+```
+
+- Start the backend server
+  `python manage.py runserver`
+  
+**This runs the backend server at default port `8000`.
+  Open [http://localhost:8000](http://localhost:8000) to view it in the browser.**<br />
+
+### Setup and running of project (Frontend)
+
+- At your root directory run `yarn install` to install all the dependencies
+- To start react dev server `yarn start`
+
+This runs the app in the development mode.<br />
+**Open [http://localhost:3000](http://localhost:3000) to view it in the browser.**
+
+The page will reload if you make edits.You will also see any lint errors in the console.<br />
+
+Contribution to the project
+------------
+<div align="center">
+
+[![GitHub issues](https://img.shields.io/github/issues/developer-student-club-thapar/slack-bots?logo=github)](https://github.com/developer-student-club-thapar/slack-bots/issues) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/developer-student-club-thapar/slack-bots?logo=git&logoColor=white) ![GitHub contributors](https://img.shields.io/github/contributors/developer-student-club-thapar/slack-bots?logo=github)
+
+</div>
+We follow a systematic Git Workflow -
+
+- Create a fork of this repo.
+- Clone your fork of your repo on your pc.
+- [Add Upstream to your clone](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/configuring-a-remote-for-a-fork)
+- **Every change** that you do, it has to be on a branch. Commits on master would directly be closed.
+- Make sure that before you create a new branch for new changes,[syncing with upstream](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork) is neccesary.
+
+**Commits**
+* Write clear meaningful git commit messages (Do read [this](http://chris.beams.io/posts/git-commit/)).
+* Make sure your PR's description contains GitHub's special keyword references that automatically close the related issue when the PR is merged. (Check [this](https://github.com/blog/1506-closing-issues-via-pull-requests) for more info)
+* When you make very very minor changes to a PR of yours (like for example fixing a failing Travis build or some small style corrections or minor changes requested by reviewers) make sure you squash your commits afterward so that you don't have an absurd number of commits for a very small fix. (Learn how to squash at [here](https://davidwalsh.name/squash-commits-git))
+* When you're submitting a PR for a UI-related issue, it would be really awesome if you add a screenshot of your change or a link to a deployment where it can be tested out along with your PR. It makes it very easy for the reviewers and you'll also get reviews quicker.
+
+#### Note
+
+- If you are adding any new requirements for the project, make sure that you are adding it to `requirements.txt`
+- Use only `yarn add package_name` to add new packages to the frontend part.
 
 ## Runtime Instructions 
 	
