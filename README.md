@@ -14,13 +14,11 @@
 [![License](https://img.shields.io/github/license/TezRomacH/python-package-template)](hhttps://github.com/developer-student-club-thapar/slack-bots/blob/master/LICENSE)
 [![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 
-This repository contains various information retrieval bots for educational purposes. The bots are server and being currently used in DSC TIET Slack Channel and we serve the following information -
+This repository contains various information retrieval bots for educational purposes. The bots are server and being currently used in DSC TIET Slack Channel and we serve the following information - </div>
 - Information about various hackathons
 - Articles from Medium
 - Articles from Dev.to
 - Articles from Git Blogs
-
-</div>
 
 Installation and Setup
 ------------
