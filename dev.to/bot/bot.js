@@ -1,6 +1,8 @@
 const { WebClient } = require('@slack/web-api');
 const fetchdevblogs=require('../dev.io/devto');
 // An access token (from your Slack app or custom integration - xoxp, xoxb)
+require('dotenv').config()
+
 const token = process.env.SLACK_TOKENDEV ;
     
 const web = new WebClient(token);
