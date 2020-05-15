@@ -20,43 +20,11 @@ This repository contains various information retrieval bots for educational purp
 - Articles from Dev.to
 - Articles from Git Blogs
 
-Installation and Setup
+Basic Layout of the repository
 ------------
-### Setup and running of project (Backend)
-
-- Fork the repo and clone it.
-- Go in the repo and setup virtualenvironment using
-  `python -m virtualenv env`
-- Then activate the environment using
-  `source env/Scripts/activate` (Use only `env/Scripts/activate` if on cmd or powershell)
-- At the root of your project directory
-```bash
- - pip install -r requirements.txt
- - pre-commit install
-```
-- This will setup the project requirements and pre-commit test hooks!
-
-- After the above setup, run
-```bash
- - python manage.py makemigrations
- - python manage.py migrate
-```
-
-- Start the backend server
-  `python manage.py runserver`
-  
-**This runs the backend server at default port `8000`.
-  Open [http://localhost:8000](http://localhost:8000) to view it in the browser.**<br />
-
-### Setup and running of project (Frontend)
-
-- At your root directory run `yarn install` to install all the dependencies
-- To start react dev server `yarn start`
-
-This runs the app in the development mode.<br />
-**Open [http://localhost:3000](http://localhost:3000) to view it in the browser.**
-
-The page will reload if you make edits.You will also see any lint errors in the console.<br />
+- Every folder in the repo represents the code of the bot which intends to scrape the file.
+- In that particular folder, you will find a README.md file, containing the instructions to run the project
+- Apart from that README will also consist of helping you support the hosting of your bots (as done by DSC TIET)
 
 Contribution to the project
 ------------
