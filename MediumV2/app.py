@@ -1,4 +1,4 @@
-from scraping import tag_search_scrape  # search_scrape
+from scraping import tag_search_scrape, search_scrape
 import secrets
 
 
@@ -15,6 +15,7 @@ slack_client = WebClient(slack_token)
 
 
 greetings = ["hi", "hello", "hello there", "hey"]
+startup_comm = "what can you do?"
 
 
 app = Flask(__name__)
@@ -48,8 +49,47 @@ def handle_message(event_data):
             command = message.get("text")
             channel_id = message["channel"]
             if any(item in command.lower() for item in greetings):
-                message = "Hello <@%s>! :tada:" % message["user"]
+                message = (
+                    "Hello <@%s>! :tada:\nTry *What can you do?*"
+                    % message["user"]  # noqa
+                )
                 slack_client.chat_postMessage(channel=channel_id, text=message)
+            elif startup_comm in command.lower():
+                slack_client.chat_postMessage(
+                    channel=channel_id,
+                    blocks=[
+                        {
+                            "type": "section",
+                            "text": {
+                                "type": "mrkdwn",
+                                "text": "Hey there 👋 I'm MediumBot. I'm here to help you fetch articles from Medium directly to Slack.\nThere are two ways to quickly search articles:",  # noqa
+                            },
+                        },
+                        {"type": "divider"},
+                        {
+                            "type": "section",
+                            "text": {
+                                "type": "mrkdwn",
+                                "text": "*1️⃣ Use the `Medium tag` command*. Type `Medium tag = ` followed by the tag for which you need articles. Try it out by using the command in this channel.\nExample - `Medium tag = Web`",  # noqa
+                            },
+                        },
+                        {
+                            "type": "section",
+                            "text": {
+                                "type": "mrkdwn",
+                                "text": "*2️⃣ Use the `Medium search` command* If you want to perform your own search then go ahead and type `Medium searh = ` followed by the search criteria.\n Example - `Medium search = Best coding practices`",  # noqa
+                            },
+                        },
+                        {"type": "divider"},
+                        {
+                            "type": "section",
+                            "text": {
+                                "type": "mrkdwn",
+                                "text": "➕ To start searching, *add me to a channel* and I'll introduce myself. ",  # noqa
+                            },
+                        },
+                    ],
+                )
             elif "tag" in message.get("text"):
                 criteria = command.split("=")[1].strip()
                 result = tag_search_scrape(criteria)
@@ -119,7 +159,76 @@ def handle_message(event_data):
                         )
                     i += 1
             elif "search" in message.get("text"):
-                print("idhar search karna hai")
+                command = command.split("=")[1].strip()
+                criteria = command.split(",")[0].strip()
+                num = command.split(",")[1].strip()
+                result = search_scrape(criteria, num)
+                i = 0
+
+                slack_client.chat_postMessage(
+                    channel=channel_id,
+                    text=f"Here are your results for *{criteria}*",  # noqa
+                )
+
+                for article in result:
+                    if "img" in result[i]:
+                        slack_client.chat_postMessage(
+                            channel=channel_id,
+                            blocks=[
+                                {
+                                    "type": "section",
+                                    "text": {
+                                        "type": "mrkdwn",
+                                        "text": f"*<{result[i]['link']}|{result[i]['title']}>* ",  # noqa
+                                    },
+                                },
+                                {
+                                    "type": "context",
+                                    "elements": [
+                                        {
+                                            "type": "mrkdwn",
+                                            "text": f"* By {result[i]['author']}* \n{result[i]['read_time']}",  # noqa
+                                        }
+                                    ],
+                                },
+                                {
+                                    "type": "image",
+                                    "title": {
+                                        "type": "plain_text",
+                                        "text": "Image",
+                                        "emoji": True,
+                                    },  # noqa
+                                    "image_url": f"{result[i]['img']}",
+                                    "alt_text": "Image",
+                                },
+                            ],
+                        )
+                    else:
+                        slack_client.chat_postMessage(
+                            channel=channel_id,
+                            blocks=[
+                                {
+                                    "type": "section",
+                                    "text": {
+                                        "type": "mrkdwn",
+                                        "text": f"*<{result[i].link}|{result[i].title}>* ",  # noqa
+                                    },
+                                },
+                                {
+                                    "type": "context",
+                                    "elements": [
+                                        {
+                                            "type": "mrkdwn",
+                                            "text": f"* By {result[i].author}* \n{result[i].read_time}",  # noqa
+                                        }
+                                    ],
+                                },
+                            ],
+                        )
+                    i += 1
+            else:
+                response = f"I don't get you! Try *What can you do?*"
+                slack_client.chat_postMessage(channel=channel_id, text=response)  # noqa
 
     thread = Thread(target=send_reply, kwargs={"value": event_data})
     thread.start()
