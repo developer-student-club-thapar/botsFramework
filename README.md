@@ -17,24 +17,11 @@
 This repository contains various Slack Bots for various purposes and information sharing in DSC TIET-GS Slack Channel
 
 </div>
-## Current goals for the project are:
-
-3 different chat bots to be developed,
-
-    1. For Hacathons, primarily from telegram. 
-    2. Medium/ technical articles
-    3. Recruitment of Hacathon teams
-
-3 stages for the Bots are:
-
-    1. Scraping using metadata
-    2. Using Regex
-    3. Applying NLP
 
 ## Runtime Instructions 
-
 	
 ### Dev.to
+	
 	1.$ cd/dev.to
 	2.$ npm install 
 	3.configure the value of the environment variable  SLACK_TOKENDEV
@@ -54,6 +41,7 @@ This repository contains various Slack Bots for various purposes and information
 	8.Top 10 posts of the week related to the topic of the url will be posted on your channel
 
 ### Github Blogs
+
 	1.$ cd/gitblog
 	2.$ npm install 
 	3.configure the value of the environment variable  SLACK_TOKENGIT
@@ -69,8 +57,6 @@ This repository contains various Slack Bots for various purposes and information
 	7.now execute the script gitroute.js using the command
 		$node gitroute.js
 	8.The posts of the github blogs of that current day will be posted
-
-
 
 ### Telegram Bot
 
