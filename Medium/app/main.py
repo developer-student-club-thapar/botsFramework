@@ -1,5 +1,5 @@
-from scraping import tag_search_scrape, search_scrape
-import secrets
+from scraper.scraping import tag_search_scrape, search_scrape
+from secrets import secrets
 
 
 from flask import Flask, Response
@@ -70,14 +70,14 @@ def handle_message(event_data):
                             "type": "section",
                             "text": {
                                 "type": "mrkdwn",
-                                "text": "*1️⃣ Use the `Medium tag` command*. Type `Medium tag = ` followed by the tag for which you need articles. Try it out by using the command in this channel.\nExample - `Medium tag = Web`",  # noqa
+                                "text": "*1️⃣ Use the `@Medium tag` command*. Type `@Medium tag = ` followed by the tag for which you need articles. Try it out by using the command in this channel.\nExample - `Medium tag = Web`",  # noqa
                             },
                         },
                         {
                             "type": "section",
                             "text": {
                                 "type": "mrkdwn",
-                                "text": "*2️⃣ Use the `Medium search` command* If you want to perform your own search then go ahead and type `Medium searh = ` followed by the search criteria.\n Example - `Medium search = Best coding practices`",  # noqa
+                                "text": "*2️⃣ Use the `@Medium search` command* If you want to perform your own search then go ahead and type `@Medium searh = ` followed by the search criteria and the number of articles that you want me to fetch.\n Example - `Medium search = Best coding practices, 2`",  # noqa
                             },
                         },
                         {"type": "divider"},
@@ -85,7 +85,7 @@ def handle_message(event_data):
                             "type": "section",
                             "text": {
                                 "type": "mrkdwn",
-                                "text": "➕ To start searching, *add me to a channel* and I'll introduce myself. ",  # noqa
+                                "text": "➕ To start searching, *add me to a channel*",  # noqa
                             },
                         },
                     ],
@@ -233,8 +233,3 @@ def handle_message(event_data):
     thread = Thread(target=send_reply, kwargs={"value": event_data})
     thread.start()
     return Response(status=200)
-
-
-# Start the server on port 3000
-if __name__ == "__main__":
-    app.run(port=3000, debug=True)
