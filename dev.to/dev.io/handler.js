@@ -73,7 +73,7 @@ function parseMessage( message )
 //function verufy call
 function verifyCall( data )
 {
-    if ( data.token === 'h6l1iY2fXoHfvjhXFSCHkGt0' ) 
+    if ( data.token === process.env.VERICICATION_TOKEN ) 
     {
         return data.challenge;
     }
