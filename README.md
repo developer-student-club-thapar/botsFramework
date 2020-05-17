@@ -11,7 +11,7 @@
 <a> <img src="https://badgen.net/dependabot/thepracticaldev/dev.to?icon=dependabot" alt="Dependabot Badge"></a>
 
 [![Pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/TezRomacH/python-package-template/blob/master/.pre-commit-config.yaml)
-[![License](https://img.shields.io/github/license/TezRomacH/python-package-template)](hhttps://github.com/developer-student-club-thapar/slack-bots/blob/master/LICENSE)
+[![License](https://img.shields.io/github/license/developer-student-club-thapar/slack-bots)](hhttps://github.com/developer-student-club-thapar/slack-bots/blob/master/LICENSE)
 [![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 
 This repository contains various information retrieval bots for educational purposes. The bots are server and being currently used in DSC TIET Slack Channel and we serve the following information - </div>
