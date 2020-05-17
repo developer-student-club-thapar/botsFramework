@@ -1,10 +1,8 @@
+  
 # Byte-compiled / optimized / DLL files
 __pycache__/
 
 node_modules
-
 Telegram/cred.py
 Telegram/cred.txt
-
-Medium/secrets.py
-
+Medium/secrets/secrets.py

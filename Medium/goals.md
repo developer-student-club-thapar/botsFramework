@@ -15,4 +15,6 @@ This particular project has been further divided into smaller milestones!
 - [x] Migrate the MediumBot to use the EventsAPI of Slack
 - [x] Deploy the app
 
+Completed !
+
 ## Phase-II:
