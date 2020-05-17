@@ -9,7 +9,7 @@
 
 
 <h1 align="center">Welcome to Devto bot 👋</h1>
-<p>
+<p align="center">
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/developer-student-club-thapar/slack-bots/tree/master/dev.to" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
@@ -58,18 +58,13 @@ npm install
 	
 ```
 
-## Run tests
-
-```sh
-npm run test
-```
 
 ## Author
 
 👤 **Ujjwal Agarwal**
 
 * Github: [@specter25](https://github.com/specter25)
-* LinkedIn: [@ujjwal agarwal](https://linkedin.com/in/ujjwal agarwal)
+* LinkedIn: [@ujjwalagarwal](https://linkedin.com/in/ujjwalagarwal)
 
 
 ## Show your support
