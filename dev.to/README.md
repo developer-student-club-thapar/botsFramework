@@ -32,12 +32,32 @@
 npm install
 ```
 
-## Usage
+## File structure
+
 
 ```sh
-	
-### Dev.to
-	
+--  ./bot/bot.js --> webApi setup of slack bot to post messgage in the slack channel
+--  ./bot/handler.js --> eventsApi setup of the Slack bot which can be directly deployed to aws lambda
+--  ./dev.io/ devto.js --> scrapes dev.to articles
+--  ./dev.io/route.js --> controller of the entire code read point 6 of usage to understand it's function
+
+```
+
+
+## Usage
+
+	While creating the bot give it the follwing OAuth Bot Token Scopes
+	1)app_mention:read
+	2)channels:join
+	3)channels:messages
+	4)channels:read
+	5)chat:write
+	6)chat:write.public
+
+
+#### WEB API setup to post the top messages of a week of a particular field . Can be deploy it using aws lambda .
+```sh
+
 	1.$ cd/dev.to
 	2.$ npm install 
 	3.configure the value of the environment variable  SLACK_TOKENDEV
@@ -55,8 +75,24 @@ npm install
 		$cd dev.io
 		$node route.js
 	8.Top 10 posts of the week 
-	
 ```
+
+
+### Event's Api setup to add interactivity features. Can be deploy it using aws lambda .
+
+
+```sh
+	1.$ cd/dev.to
+	2.$ npm install 
+	3.configure the value of the environment variable SLACK_TOKENDEV and VERICICATION_TOKEN
+	4.install the app to your workspace
+	5.add the app to the channel in which you want to deploy the app
+	6.this script can be directly deployed to aws lambda without any further changes to it
+	7. deploy the script verify the request url in the your bot\'s event api in slack and give it required permissions(mainly app mention read)
+	8. To go the channel to which the bot has been added and type '@<botname> hello' for the tutorial 
+	9. The events's api can't be tested locally it has to be deployed first
+```
+
 
 
 ## Author
@@ -64,7 +100,7 @@ npm install
 👤 **Ujjwal Agarwal**
 
 * Github: [@specter25](https://github.com/specter25)
-* LinkedIn: [@ujjwalagarwal](https://linkedin.com/in/ujjwalagarwal)
+* LinkedIn: [@ujjwalagarwal](https://linkedin.com/in/agarwalujjwal012)
 
 
 ## Show your support

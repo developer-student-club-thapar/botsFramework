@@ -87,7 +87,7 @@ const fetchdevblogs=async(url)=>{
           "type": "section",
           "text": {
             "type": "mrkdwn",
-            "text": `*<${`dev.to${plink}`}|${pcontent.trim()}>*\n:hearts: ${likes} likes\n ${tags}`
+            "text": `*<${`https://dev.to${plink}`}|${pcontent.trim()}>*\n:hearts: ${likes} likes\n ${tags}`
           }
 
         }
