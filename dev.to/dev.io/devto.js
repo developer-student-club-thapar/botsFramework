@@ -17,8 +17,6 @@ const imagearray= [
   `https://headspring.com/wp-content/uploads/2018/06/Build-Vs-Buy-Pt-1-Value-of-Custom-Software.jpg`,
   `https://www.goodcore.co.uk/blog/wp-content/uploads/2019/08/system-software.png`,
   `https://www.goodcore.co.uk/blog/wp-content/uploads/2019/08/programming-software.png`,
-  // `https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRH0ZQ6kifxR3TWApQjhhYk_400Eu12-jBdt91689q3YBkW0NuZ&usqp=CAU`,
-  // `https://assets.kpmg/content/dam/kpmg/in/images/2019/05/urban-transformation-smart-cities-iot-1400X350.jpg/jcr:content/renditions/cq5dam.web.512.341.jpg`,
   `https://images.techhive.com/images/article/2017/05/internet_of_things-100720860-large.jpg`,
   `https://content-static.upwork.com/blog/uploads/sites/3/2019/06/11041941/11-Tips-to-Optimize-JavaScript-And-Improve-Website-Loading-and-Rendering-Speeds-feature.png`,
   `https://stackify.com/wp-content/uploads/2018/10/JavaScript-Tutorials-for-Beginners-881x441.jpg`,
@@ -48,7 +46,6 @@ const fetchdevblogs=async(url)=>{
     const divider=	{
         "type": "divider"
     };
-    // console.log($);
     let noimg= Math.floor(Math.random()*6);
     $('.crayons-story').each(function(index)
     {
@@ -64,7 +61,7 @@ const fetchdevblogs=async(url)=>{
         console.log(likes);
         const dates=$(this).find('time').text().trim();
         
-        // console.log(typeof(tags));
+
 
         const context1=		{
           "type": "context",
@@ -92,11 +89,7 @@ const fetchdevblogs=async(url)=>{
             "type": "mrkdwn",
             "text": `*<${`dev.to${plink}`}|${pcontent.trim()}>*\n:hearts: ${likes} likes\n ${tags}`
           }
-          // "accessory": {
-          //   "type": "image",
-          //   "image_url": imagearray[noimg+c],
-          //   "alt_text": "alt text for image"
-          // }
+
         }
         const imgblock={
           "type": "image",
@@ -113,10 +106,7 @@ const fetchdevblogs=async(url)=>{
         blocks.push(context1);
         blocks.push(imgblock);
         blocks.push(divider);
-        // console.log(pcontent);
-        // console.log(`dev.to${plink}`);
-        // console.log(tags);
-        // console.log('------------------------------------------------------',c);
+
         final=`${final}${'\n'}${pcontent}${'\n'}${plink}${'\n'}${tags}${'\n'}------------${'\n'}`
         }
     }
