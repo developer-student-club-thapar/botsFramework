@@ -28,7 +28,7 @@ six==1.14.0
 slackclient==2.5.0
 slackeventsapi==2.1.0
 soupsieve==2.0
-toml==0.10.0
+toml==0.10.1
 urllib3==1.25.9
 virtualenv==20.0.18
 websocket-client==0.54.0
