@@ -16,4 +16,4 @@ const urlweek={
     startup:"https://dev.to/t/startup"
 }
 
-slackpost('G011PCMST3R',urlweek.webdev);
+slackpost('C012WCD3QF4',urlweek.webdev);
