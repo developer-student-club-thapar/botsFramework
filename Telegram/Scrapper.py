@@ -65,19 +65,4 @@ def get_last_chat_id_and_text(updates):
     last_update = num_updates - 1
     text = updates["result"][last_update]["message"]["text"]
     chat_id = updates["result"][last_update]["message"]["chat"]["id"]
-    return (text, chat_id)
-
-   
-##def main():
-##    last_update_id = None
-##    while True:
-##        updates = get_updates(last_update_id)
-##        if len(updates["result"]) > 0:
-##            last_update_id = get_last_update_id(updates) + 1
-##            contain_url(updates)
-##        time.sleep(0.5)
-##
-##
-##if __name__ == '__main__':
-##    main()
-                           
+    return (text, chat_id)                         
