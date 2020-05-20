@@ -1,11 +1,11 @@
 import json
 import requests
+from cred import *                          #Comment this line
+##TOKEN=                                    #manually add your bots token
+##CHAT_ID=                                  #manualy add "-" before chat IDs for groups
 
-TOKEN='' #add your bots token
-
-CHAT_ID= #add "-" before chat IDs for groups
-
-URL = "https://api.telegram.org/bot{}/".format(TOKEN)
+message=[["Hackathon Updates"]]
+URL = "https://api.telegram.org/bot{}/".format(TOKEN1)
 
 
 def get_url(url):
@@ -21,7 +21,7 @@ def get_json_from_url(url):
 
 
 def get_updates(offset=None):
-    url = URL + "getUpdates?timeout=256"
+    url = URL + "getUpdates"
     if offset:
         url += "?offset={}".format(offset)
     js = get_json_from_url(url)
@@ -38,33 +38,31 @@ def get_last_update_id(updates):
 def contain_url(updates):
     num_updates = len(updates["result"])
     for i in range(num_updates - 1, -1, -1):
-        if updates["result"][i]["message"]["chat"]["id"] == CHAT_ID:
-            try:
+        #print(updates["result"][i]["update_id"])
+        try:
+            if updates["result"][i]["message"]["chat"]["id"] == CHAT_ID1:                
                 entities=updates["result"][i]["message"]["entities"]
-                for j in range (0,len(updates["result"][i]["message"]["entities"])):
-                    if updates["result"][i]["message"]["entities"][j]["type"]== "url":
-                        text_s = updates["result"][i]["message"]["text"].encode('ascii', 'ignore').decode('ascii')
-                        text_entities = updates["result"][i]["message"]["entities"][j]["type"]
-                        print(text_s, text_entities)
-            except KeyError:
-                print('no url')
+        except KeyError:
+                pass
+        else:
+            for j in range (0,len(updates["result"][i]["message"]["entities"])):
+                if updates["result"][i]["message"]["entities"][j]["type"]== "url":
+                    offset=updates["result"][i]["message"]["entities"][j]["offset"]
+                    length=updates["result"][i]["message"]["entities"][j]["length"]                    
+                    text_s = updates["result"][i]["message"]["text"].encode('ascii', 'ignore').decode('ascii')
+                    url=text_s[offset-2:offset+length+3]
+                    text_entities = updates["result"][i]["message"]["entities"][j]["type"]
+                    print('\n\n\n\n\n')
+                    print(updates["result"][i]["update_id"])
+                    print(text_s)
+                    input_data=[text_s,url,updates["result"][i]["update_id"],]
+                    if input_data not in message:
+                        message.append(input_data[:])
+                        
+                
 def get_last_chat_id_and_text(updates):
     num_updates = len(updates["result"])
     last_update = num_updates - 1
     text = updates["result"][last_update]["message"]["text"]
     chat_id = updates["result"][last_update]["message"]["chat"]["id"]
-    return (text, chat_id)
-   
-def main():
-    last_update_id = None
-    while True:
-        updates = get_updates(last_update_id)
-        if len(updates["result"]) > 0:
-            last_update_id = get_last_update_id(updates) + 1
-            contain_url(updates)
-        time.sleep(0.5)
-
-
-if __name__ == '__main__':
-    main()
-                           
+    return (text, chat_id)                         
