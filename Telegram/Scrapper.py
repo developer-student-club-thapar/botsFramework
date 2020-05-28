@@ -7,6 +7,18 @@ from cred import *                          #Comment this line
 message=[]
 URL = "https://api.telegram.org/bot{}/".format(TOKEN1)
 
+def remove_dublicate(message):
+    try:
+        range=len(message)
+        i=0
+        while i<range:
+            if message[i][2]==message[i+1][2]:
+                message.pop(i+1)
+                i-=1
+            i+=1
+    except IndexError:
+        pass
+
 def get_url(url):
     response = requests.get(url)
     content = response.content.decode("utf8")
@@ -57,12 +69,12 @@ def contain_url(updates):
                     input_data=[text_s,url,updates["result"][i]["update_id"],]
                     if input_data not in message:
                         message.append(input_data[:])
-       try:
+        try:
             if updates["result"][i]["message"]["chat"]["id"] == CHAT_ID1:                
                 entities=updates["result"][i]["message"]["caption_entities"]
-       except KeyError:
+        except KeyError:
                 pass
-       else:
+        else:
             for j in range (0,len(updates["result"][i]["message"]["caption_entities"])):
                 if updates["result"][i]["message"]["caption_entities"][j]["type"]== "url":
                     offset=updates["result"][i]["message"]["caption_entities"][j]["offset"]
@@ -75,7 +87,8 @@ def contain_url(updates):
                     print(text_s)
                     input_data=[text_s,url,updates["result"][i]["update_id"],]
                     if input_data not in message:
-                        message.append(input_data[:])                     
+                        message.append(input_data[:])
+    remove_dublicate(message)
                 
 def get_last_chat_id_and_text(updates):
     num_updates = len(updates["result"])
