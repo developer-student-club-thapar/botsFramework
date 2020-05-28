@@ -27,7 +27,7 @@ requests==2.23.0
 six==1.14.0
 slackclient==2.5.0
 slackeventsapi==2.1.0
-soupsieve==2.0
+soupsieve==2.0.1
 toml==0.10.1
 urllib3==1.25.9
 virtualenv==20.0.20
