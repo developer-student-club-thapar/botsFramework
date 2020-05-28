@@ -4,9 +4,20 @@ from cred import *                          #Comment this line
 ##TOKEN=                                    #manually add your bots token
 ##CHAT_ID=                                  #manualy add "-" before chat IDs for groups
 
-message=[["Hackathon Updates"]]
+message=[]
 URL = "https://api.telegram.org/bot{}/".format(TOKEN1)
 
+def remove_dublicate(message):
+    try:
+        range=len(message)
+        i=0
+        while i<range:
+            if message[i][2]==message[i+1][2]:
+                message.pop(i+1)
+                i-=1
+            i+=1
+    except IndexError:
+        pass
 
 def get_url(url):
     response = requests.get(url)
@@ -38,7 +49,7 @@ def get_last_update_id(updates):
 def contain_url(updates):
     num_updates = len(updates["result"])
     for i in range(num_updates - 1, -1, -1):
-        #print(updates["result"][i]["update_id"])
+        print(updates["result"][i]["update_id"])
         try:
             if updates["result"][i]["message"]["chat"]["id"] == CHAT_ID1:                
                 entities=updates["result"][i]["message"]["entities"]
@@ -58,11 +69,30 @@ def contain_url(updates):
                     input_data=[text_s,url,updates["result"][i]["update_id"],]
                     if input_data not in message:
                         message.append(input_data[:])
-                        
+        try:
+            if updates["result"][i]["message"]["chat"]["id"] == CHAT_ID1:                
+                entities=updates["result"][i]["message"]["caption_entities"]
+        except KeyError:
+                pass
+        else:
+            for j in range (0,len(updates["result"][i]["message"]["caption_entities"])):
+                if updates["result"][i]["message"]["caption_entities"][j]["type"]== "url":
+                    offset=updates["result"][i]["message"]["caption_entities"][j]["offset"]
+                    length=updates["result"][i]["message"]["caption_entities"][j]["length"]                    
+                    text_s = updates["result"][i]["message"]["caption"].encode('ascii', 'ignore').decode('ascii')
+                    url=text_s[offset-2:offset+length+3]
+                    text_entities = updates["result"][i]["message"]["caption_entities"][j]["type"]
+                    print('\n\n\n\n\n')
+                    print(updates["result"][i]["update_id"])
+                    print(text_s)
+                    input_data=[text_s,url,updates["result"][i]["update_id"],]
+                    if input_data not in message:
+                        message.append(input_data[:])
+    remove_dublicate(message)
                 
 def get_last_chat_id_and_text(updates):
     num_updates = len(updates["result"])
     last_update = num_updates - 1
     text = updates["result"][last_update]["message"]["text"]
     chat_id = updates["result"][last_update]["message"]["chat"]["id"]
-    return (text, chat_id)                         
+    return (text, chat_id)
