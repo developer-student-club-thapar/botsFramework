@@ -57,12 +57,12 @@ def contain_url(updates):
                     input_data=[text_s,url,updates["result"][i]["update_id"],]
                     if input_data not in message:
                         message.append(input_data[:])
-       try:
+        try:
             if updates["result"][i]["message"]["chat"]["id"] == CHAT_ID1:                
                 entities=updates["result"][i]["message"]["caption_entities"]
-       except KeyError:
+        except KeyError:
                 pass
-       else:
+        else:
             for j in range (0,len(updates["result"][i]["message"]["caption_entities"])):
                 if updates["result"][i]["message"]["caption_entities"][j]["type"]== "url":
                     offset=updates["result"][i]["message"]["caption_entities"][j]["offset"]
