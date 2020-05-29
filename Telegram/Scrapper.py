@@ -5,6 +5,7 @@ from cred import *                          #Comment this line
 ##CHAT_ID=                                  #manualy add "-" before chat IDs for groups
 
 message=[]
+Black_List = ['twitter.com', '//t.me/']
 URL = "https://api.telegram.org/bot{}/".format(TOKEN1)
 
 def remove_dublicate(message):
@@ -82,6 +83,8 @@ def contain_url(updates):
                     input_data=[text_s,url,updates["result"][i]["update_id"],]
                     if input_data not in message:
                         message.append(input_data[:])
+    message.reverse()
+    Remove_Blacklisted_URL(message)
     remove_dublicate(message)
                 
 def get_last_chat_id_and_text(updates):
@@ -90,3 +93,20 @@ def get_last_chat_id_and_text(updates):
     text = updates["result"][last_update]["message"]["text"]
     chat_id = updates["result"][last_update]["message"]["chat"]["id"]
     return (text, chat_id)
+
+def Remove_Blacklisted_URL(message):
+    try:
+        range=len(message)
+        i=0
+        while i<range:
+            for j in Black_List:
+                print(j)
+                print(message[i][1])
+                if j in message[i][1]:
+                    print(i)
+                    message.pop(i)
+                    i-=1
+                i+=1
+    except IndexError:
+        pass
+                
