@@ -28,4 +28,8 @@
 ### Using Google Sheets as Database
 
 	Updating Soon
+
+### Important notes
+
+		* Emoji are removed during scrapping
  
