@@ -9,17 +9,16 @@ Black_List = ['twitter.com', '//t.me/']
 URL = "https://api.telegram.org/bot{}/".format(TOKEN1)
 
 def remove_dublicate(message):
-    print('remove_dublicate_invoked')
-    # try:
-    #     range=len(message)
-    #     i=0
-    #     while i<range:
-    #         if message[i][2]==message[i+1][2]:
-    #             message.pop(i+1)
-    #             i-=1
-    #         i+=1
-    # except IndexError:
-    #     pass
+    try:
+        range=len(message)
+        i=0
+        while i<range:
+            if message[i][2]==message[i+1][2]:
+                message.pop(i+1)
+                i-=1
+            i+=1
+    except IndexError:
+        pass
 
 def get_url(url):
     response = requests.get(url)
@@ -85,7 +84,6 @@ def contain_url(updates):
                         message.append(input_data[:])
     message.reverse()
     Remove_Blacklisted_URL(message)
-    remove_dublicate(message)
                 
 def get_last_chat_id_and_text(updates):
     num_updates = len(updates["result"])

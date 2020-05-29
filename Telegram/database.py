@@ -13,7 +13,7 @@ sheets = client.open('Slack_Bots').sheet1
 # Scraped = sheets.col_values(3)                          #Note the index staarts from 1
 # pp.pprint(Scraped)
 
-def add_item(data,index = 2):
+def Add_to_Sheets(data,index = 2):
     for i in data:
         new_row=i
         sheets.insert_row(new_row, index)
