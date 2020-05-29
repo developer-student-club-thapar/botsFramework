@@ -1,4 +1,4 @@
-### Telegram Bot Setup
+### Telegram Bot Setup - Scrapper
 
 	1. 'Talk' to 'BotFather' in the Telegram app to create a new bot
 	2. Use '/setprivacy' and 'Disable'. Now your bot can read all messages in the group
@@ -17,5 +17,15 @@
 		replace XXX:YYYY with your bot token
 
 		4- Look for "chat":{"id":-zzzzzzzzzz,
-		-zzzzzzzzzz is your chat id (with the negative sign).
-	5. Add your Chat ID and bot Token to Telegram/scrapper.py
+		-zzzzzzzzzz is your chat id (with the negative sign). 
+ 
+	5. Add your Chat ID and bot Token to Telegram/scrapper.py 
+ 
+### Slack Bot Setup - Server
+
+	Updating Soon
+
+### Using Google Sheets as Database
+
+	Updating Soon
+ 
