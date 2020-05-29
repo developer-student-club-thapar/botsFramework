@@ -8,16 +8,17 @@ message=[]
 URL = "https://api.telegram.org/bot{}/".format(TOKEN1)
 
 def remove_dublicate(message):
-    try:
-        range=len(message)
-        i=0
-        while i<range:
-            if message[i][2]==message[i+1][2]:
-                message.pop(i+1)
-                i-=1
-            i+=1
-    except IndexError:
-        pass
+    print('remove_dublicate_invoked')
+    # try:
+    #     range=len(message)
+    #     i=0
+    #     while i<range:
+    #         if message[i][2]==message[i+1][2]:
+    #             message.pop(i+1)
+    #             i-=1
+    #         i+=1
+    # except IndexError:
+    #     pass
 
 def get_url(url):
     response = requests.get(url)
@@ -49,7 +50,6 @@ def get_last_update_id(updates):
 def contain_url(updates):
     num_updates = len(updates["result"])
     for i in range(num_updates - 1, -1, -1):
-        print(updates["result"][i]["update_id"])
         try:
             if updates["result"][i]["message"]["chat"]["id"] == CHAT_ID1:                
                 entities=updates["result"][i]["message"]["entities"]
@@ -61,11 +61,8 @@ def contain_url(updates):
                     offset=updates["result"][i]["message"]["entities"][j]["offset"]
                     length=updates["result"][i]["message"]["entities"][j]["length"]                    
                     text_s = updates["result"][i]["message"]["text"].encode('ascii', 'ignore').decode('ascii')
-                    url=text_s[offset-2:offset+length+3]
+                    url=text_s[offset:offset+length]
                     text_entities = updates["result"][i]["message"]["entities"][j]["type"]
-                    print('\n\n\n\n\n')
-                    print(updates["result"][i]["update_id"])
-                    print(text_s)
                     input_data=[text_s,url,updates["result"][i]["update_id"],]
                     if input_data not in message:
                         message.append(input_data[:])
@@ -82,9 +79,6 @@ def contain_url(updates):
                     text_s = updates["result"][i]["message"]["caption"].encode('ascii', 'ignore').decode('ascii')
                     url=text_s[offset-2:offset+length+3]
                     text_entities = updates["result"][i]["message"]["caption_entities"][j]["type"]
-                    print('\n\n\n\n\n')
-                    print(updates["result"][i]["update_id"])
-                    print(text_s)
                     input_data=[text_s,url,updates["result"][i]["update_id"],]
                     if input_data not in message:
                         message.append(input_data[:])
