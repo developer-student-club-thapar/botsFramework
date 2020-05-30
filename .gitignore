@@ -6,3 +6,4 @@ node_modules
 Telegram/cred.py
 Telegram/cred.txt
 Medium/secrets/secrets.py
+Client_Secret.json

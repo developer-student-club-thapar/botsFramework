@@ -5,6 +5,7 @@ from cred import *                          #Comment this line
 ##CHAT_ID=                                  #manualy add "-" before chat IDs for groups
 
 message=[]
+Black_List = ['twitter.com', '//t.me/']
 URL = "https://api.telegram.org/bot{}/".format(TOKEN1)
 
 def remove_dublicate(message):
@@ -49,7 +50,6 @@ def get_last_update_id(updates):
 def contain_url(updates):
     num_updates = len(updates["result"])
     for i in range(num_updates - 1, -1, -1):
-        print(updates["result"][i]["update_id"])
         try:
             if updates["result"][i]["message"]["chat"]["id"] == CHAT_ID1:                
                 entities=updates["result"][i]["message"]["entities"]
@@ -61,11 +61,8 @@ def contain_url(updates):
                     offset=updates["result"][i]["message"]["entities"][j]["offset"]
                     length=updates["result"][i]["message"]["entities"][j]["length"]                    
                     text_s = updates["result"][i]["message"]["text"].encode('ascii', 'ignore').decode('ascii')
-                    url=text_s[offset-2:offset+length+3]
+                    url=text_s[offset:offset+length]
                     text_entities = updates["result"][i]["message"]["entities"][j]["type"]
-                    print('\n\n\n\n\n')
-                    print(updates["result"][i]["update_id"])
-                    print(text_s)
                     input_data=[text_s,url,updates["result"][i]["update_id"],]
                     if input_data not in message:
                         message.append(input_data[:])
@@ -82,13 +79,11 @@ def contain_url(updates):
                     text_s = updates["result"][i]["message"]["caption"].encode('ascii', 'ignore').decode('ascii')
                     url=text_s[offset-2:offset+length+3]
                     text_entities = updates["result"][i]["message"]["caption_entities"][j]["type"]
-                    print('\n\n\n\n\n')
-                    print(updates["result"][i]["update_id"])
-                    print(text_s)
                     input_data=[text_s,url,updates["result"][i]["update_id"],]
                     if input_data not in message:
                         message.append(input_data[:])
-    remove_dublicate(message)
+    message.reverse()
+    Remove_Blacklisted_URL(message)
                 
 def get_last_chat_id_and_text(updates):
     num_updates = len(updates["result"])
@@ -96,3 +91,20 @@ def get_last_chat_id_and_text(updates):
     text = updates["result"][last_update]["message"]["text"]
     chat_id = updates["result"][last_update]["message"]["chat"]["id"]
     return (text, chat_id)
+
+def Remove_Blacklisted_URL(message):
+    try:
+        range=len(message)
+        i=0
+        while i<range:
+            for j in Black_List:
+                print(j)
+                print(message[i][1])
+                if j in message[i][1]:
+                    print(i)
+                    message.pop(i)
+                    i-=1
+                i+=1
+    except IndexError:
+        pass
+                
