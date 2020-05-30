@@ -98,10 +98,7 @@ def Remove_Blacklisted_URL(message):
         i=0
         while i<range:
             for j in Black_List:
-                print(j)
-                print(message[i][1])
                 if j in message[i][1]:
-                    print(i)
                     message.pop(i)
                     i-=1
                 i+=1
