@@ -1,27 +1,42 @@
 const { WebClient } = require('@slack/web-api');
-const fetchdevblogs=require('../dev.io/devto');
-// An access token (from your Slack app or custom integration - xoxp, xoxb)
+const {fetchdevblogs , fetchdevblogsimages}=require('../dev.io/devto');
+
 require('dotenv').config()
 
-const token = process.env.SLACK_TOKENDEV ;
+const token = 'xoxb-701820055536-1134559224756-TrIOTpg9jNTj6zhNZgfdpKco' ;
     
 const web = new WebClient(token);
 
 const slackpost=async(channel,url)=>{
 
-    // This argument can be a channel ID, a DM ID, a MPDM ID, or a group ID
+
     const conversationId = channel;
 
     (async () => {
         let res;
-     // See: https://api.slack.com/methods/chat.postMessage
-     fetchdevblogs(url).then(async (final)=>{
-        // console.log(final);
-        res = await web.chat.postMessage({ channel: conversationId, blocks: final });
+
+     fetchdevblogs(url).then(async ({blocks, arr})=>{
+
+        for (let index = 0; index < 5; index++) {
+            const element = arr[index];
+            const image = await  fetchdevblogsimages(element);
+
+            console.log((index*5+3)  +'th block')
+            console.log(blocks[(index*5+3)])
+            if(blocks[index*5+3]["image_url"] && image)
+            {
+                blocks[index*5+3]["image_url"]=image
+            }
+
+
+        }
+         
+
+
+        res = await web.chat.postMessage({ channel: conversationId, blocks });
 
     });
-     // `res` contains information about the posted message
-    //  console.log('Message sent: ', res.ts);
+
 })();
 
 
