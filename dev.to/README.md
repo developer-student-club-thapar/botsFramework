@@ -35,7 +35,7 @@ npm install
 ## File structure
 
 
-```
+
 | Folder | File | Description |
 | --- | --- | --- |
 | bot | bot.js | webApi setup of slack bot to post messgage in the slack channel |
@@ -43,8 +43,6 @@ npm install
 | dev.io | devto.js | scrapes dev.to articles |
 | dev.io | route.js | webApi setup of slack bot to post messgage in the slack channel |
 | git diff | controller of the entire code read point 6 of usage to understand it's function | 
-
-```
 
 
 ## Usage
