@@ -35,11 +35,14 @@ npm install
 ## File structure
 
 
-```sh
---  ./bot/bot.js --> webApi setup of slack bot to post messgage in the slack channel
---  ./bot/handler.js --> eventsApi setup of the Slack bot which can be directly deployed to aws lambda
---  ./dev.io/ devto.js --> scrapes dev.to articles
---  ./dev.io/route.js --> controller of the entire code read point 6 of usage to understand it's function
+```
+| Folder | File | Description |
+| --- | --- | --- |
+| bot | bot.js | webApi setup of slack bot to post messgage in the slack channel |
+| bot | handler.js | eventsApi setup of the Slack bot which can be directly deployed to aws lambda |
+| dev.io | devto.js | scrapes dev.to articles |
+| dev.io | route.js | webApi setup of slack bot to post messgage in the slack channel |
+| git diff | controller of the entire code read point 6 of usage to understand it's function | 
 
 ```
 
@@ -56,7 +59,8 @@ npm install
 
 
 #### WEB API setup to post the top messages of a week of a particular field . Can be deploy it using aws lambda .
-```sh
+
+```
 
 	1.$ cd/dev.to
 	2.$ npm install 
@@ -81,7 +85,7 @@ npm install
 ### Event's Api setup to add interactivity features. Can be deploy it using aws lambda .
 
 
-```sh
+```
 	1.$ cd/dev.to
 	2.$ npm install 
 	3.configure the value of the environment variable SLACK_TOKENDEV and VERICICATION_TOKEN
