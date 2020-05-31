@@ -36,12 +36,15 @@ npm install
 ## File structure
 
 
-```sh
---  ./bot.js --> webApi setup of slack bot to post messgage in the slack channel
---  ./gitblog.js --> scrapes dev.to articles
---  ./gitroute.js --> controller of the entire code read point 6 of usage to understand it's function
 
-```
+| File | Description |
+| --- | --- |
+| bot.js | webApi setup of slack bot to post messgage in the slack channel |
+| gitblog.js | scrapes gitblog articles |
+| gitroute.js | controller of the entire code read point 6 of usage to understand it's function |
+
+
+
 
 ## Usage
 
