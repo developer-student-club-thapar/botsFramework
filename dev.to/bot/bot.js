@@ -3,7 +3,7 @@ const {fetchdevblogs , fetchdevblogsimages}=require('../dev.io/devto');
 
 require('dotenv').config()
 
-const token = 'xoxb-701820055536-1134559224756-TrIOTpg9jNTj6zhNZgfdpKco' ;
+const token = process.env.SLACK_TOEKNDEV ;
     
 const web = new WebClient(token);
 
