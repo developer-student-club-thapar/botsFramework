@@ -59,56 +59,17 @@ const fetchdevblogs=async (url)=>{
         arr.push(`${`https://dev.to${plink}`}`);
 
 
-
-
-        const context1=		{
-          "type": "context",
-          "elements": [
-            {
-              "type": "mrkdwn",
-              "text": `*Reading-Time:* ${reading.trim()}`
-            }
-          ]
-        }
-        const context2=		{
-          "type": "context",
-          "elements": [
-            {
-              "type": "mrkdwn",
-              "text": `*Date:* ${dates}`
-            }
-          ]
+        const content = {
+          plink : `${`https://dev.to${plink}`}`,
+          tags,
+          pcontent : `${pcontent.trim()}`,
+          reading : `${reading.trim()}`,
+          likes,
+          dates,
+          image:  imagearray[ Math.floor(Math.random()*7)]
         }
 
-
-        const block={
-          "type": "section",
-          "text": {
-            "type": "mrkdwn",
-            "text": `*<${`https://dev.to${plink}`}|${pcontent.trim()}>*\n:hearts: ${likes} likes\n ${tags}`
-          }
-
-        }
-
-
-          const imgblock={
-          "type": "image",
-          "title": {
-            "type": "plain_text",
-            "text": "Image",
-            "emoji": true
-          },
-          "image_url" : imagearray[ Math.floor(Math.random()*7)],
-          "alt_text": "Example Image"
-        }
-
-
-        blocks.push(block);
-        blocks.push(context2);
-        blocks.push(context1);
-
-        blocks.push(imgblock);
-        blocks.push(divider);
+        blocks.push(content);
 
         final=`${final}${'\n'}${pcontent}${'\n'}${plink}${'\n'}${tags}${'\n'}------------${'\n'}`
         }

@@ -1,5 +1,5 @@
 
-const slackpost=require('../bot/bot');
+const discordpost=require('../bot/bot');
 const urlweek={
     webdev:"https://dev.to/t/webdev/top/week",
     python:"https://dev.to/t/python/top/week",
@@ -15,6 +15,5 @@ const urlweek={
     machineLearning:"https://dev.to/t/machinelearning/top/week",
     startup:"https://dev.to/t/startup"
 }
-
-slackpost('G011PCMST3R',urlweek.machineLearning);
+discordpost(urlweek.webdev , '719398484284932130');
 
