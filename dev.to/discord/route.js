@@ -1,5 +1,5 @@
 
-const discordpost=require('../bot/bot');
+const discordpost=require('./bot/bot');
 const urlweek={
     webdev:"https://dev.to/t/webdev/top/week",
     python:"https://dev.to/t/python/top/week",

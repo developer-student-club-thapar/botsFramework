@@ -1,9 +1,9 @@
 const Discord = require('discord.js')
 const client = new Discord.Client()
-const {fetchdevblogs , fetchdevblogsimages}=require('../dev.io/devto');
+const {fetchdevblogs , fetchdevblogsimages}=require('../devto');
 
 
-bot_secret_token = process.env.BOTDEVTOKEN
+bot_secret_token = 'NzE5Mzk5NzI3ODc1MDk2NTk4.Xt23RQ.XV_FZfchTENvywegPoMoZYaQzz8'
 
 
 
