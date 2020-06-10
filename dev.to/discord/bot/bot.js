@@ -3,7 +3,7 @@ const client = new Discord.Client()
 const {fetchdevblogs , fetchdevblogsimages}=require('../devto');
 
 
-bot_secret_token = 'NzE5Mzk5NzI3ODc1MDk2NTk4.Xt23RQ.XV_FZfchTENvywegPoMoZYaQzz8'
+bot_secret_token = process.env.BOTDEVTOKEN
 
 
 
