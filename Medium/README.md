@@ -6,5 +6,4 @@
 
 </div>
 
-Basic Layout of the bot
-----
+## Basic Layout of the bot

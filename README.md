@@ -11,6 +11,7 @@
 <a href="https://instagram.com/dsc.tiet"><img src="https://github.com/aritraroy/social-icons/blob/master/instagram-icon.png?raw=true" width="60"></a>
 
 # Slack Bots
+
 [![GitHub issues](https://img.shields.io/github/issues/developer-student-club-thapar/slack-bots?logo=github)](https://github.com/developer-student-club-thapar/slack-bots/issues)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 ![GitHub repo size](https://img.shields.io/github/repo-size/developer-student-club-thapar/slack-bots)
@@ -21,19 +22,20 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 
 This repository contains various information retrieval bots for educational purposes. The bots are server and being currently used in DSC TIET Slack Channel and we serve the following information - </div>
+
 - Information about various hackathons
 - Articles from Medium
 - Articles from Dev.to
 - Articles from Git Blogs
 
-Basic Layout of the repository
-------------
+## Basic Layout of the repository
+
 - Every folder in the repo represents the code of the bot which intends to scrape the file.
 - In that particular folder, you will find a README.md file, containing the instructions to run the project
 - Apart from that README will also consist of helping you support the hosting of your bots (as done by DSC TIET)
 
-Contribution to the project
-------------
+## Contribution to the project
+
 <div align="center">
 
 [![GitHub issues](https://img.shields.io/github/issues/developer-student-club-thapar/slack-bots?logo=github)](https://github.com/developer-student-club-thapar/slack-bots/issues) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/developer-student-club-thapar/slack-bots?logo=git&logoColor=white) ![GitHub contributors](https://img.shields.io/github/contributors/developer-student-club-thapar/slack-bots?logo=github)
@@ -48,21 +50,18 @@ We follow a systematic Git Workflow -
 - Make sure that before you create a new branch for new changes,[syncing with upstream](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork) is neccesary.
 
 **Commits**
-* Write clear meaningful git commit messages (Do read [this](http://chris.beams.io/posts/git-commit/)).
-* Make sure your PR's description contains GitHub's special keyword references that automatically close the related issue when the PR is merged. (Check [this](https://github.com/blog/1506-closing-issues-via-pull-requests) for more info)
-* When you make very very minor changes to a PR of yours (like for example fixing a failing Travis build or some small style corrections or minor changes requested by reviewers) make sure you squash your commits afterward so that you don't have an absurd number of commits for a very small fix. (Learn how to squash at [here](https://davidwalsh.name/squash-commits-git))
-* When you're submitting a PR for a UI-related issue, it would be really awesome if you add a screenshot of your change or a link to a deployment where it can be tested out along with your PR. It makes it very easy for the reviewers and you'll also get reviews quicker.
+
+- Write clear meaningful git commit messages (Do read [this](http://chris.beams.io/posts/git-commit/)).
+- Make sure your PR's description contains GitHub's special keyword references that automatically close the related issue when the PR is merged. (Check [this](https://github.com/blog/1506-closing-issues-via-pull-requests) for more info)
+- When you make very very minor changes to a PR of yours (like for example fixing a failing Travis build or some small style corrections or minor changes requested by reviewers) make sure you squash your commits afterward so that you don't have an absurd number of commits for a very small fix. (Learn how to squash at [here](https://davidwalsh.name/squash-commits-git))
+- When you're submitting a PR for a UI-related issue, it would be really awesome if you add a screenshot of your change or a link to a deployment where it can be tested out along with your PR. It makes it very easy for the reviewers and you'll also get reviews quicker.
 
 #### Note
 
 - If you are adding any new requirements for the project, make sure that you are adding it to `requirements.txt`
 - Use only `yarn add package_name` to add new packages to the frontend part.
 
-
-
-## Runtime Instructions 
-
-
+## Runtime Instructions
 
 ## Contributors ✨
 
@@ -82,4 +81,5 @@ Thanks goes to these wonderful people for helping us with the project! :
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
