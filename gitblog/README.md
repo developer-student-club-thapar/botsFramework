@@ -1,12 +1,8 @@
 <div align = "center">
 
-
 <img height=200px src= "https://github.blog/wp-content/uploads/2013/04/074d0b06-a5e3-11e2-8b7f-9f09eb2ddfae.jpg?resize=1234%2C701">
 
-
-
 </div>
-
 
 <h1 align="center">Welcome to GitBlog  bot 👋</h1>
 <p align="center">
@@ -32,42 +28,37 @@
 npm install
 ```
 
-
 ## File structure
 
-
-
-| File | Description |
-| --- | --- |
-| bot.js | webApi setup of slack bot to post messgage in the slack channel |
-| gitblog.js | scrapes gitblog articles |
+| File        | Description                                                                     |
+| ----------- | ------------------------------------------------------------------------------- |
+| bot.js      | webApi setup of slack bot to post messgage in the slack channel                 |
+| gitblog.js  | scrapes gitblog articles                                                        |
 | gitroute.js | controller of the entire code read point 6 of usage to understand it's function |
-
-
-
 
 ## Usage
 
-	While creating the bot give it the follwing OAuth Bot Token Scopes
-	1)app_mention:read
-	2)channels:join
-	3)channels:messages
-	4)channels:read
-	5)chat:write
-	6)chat:write.public
+    While creating the bot give it the follwing OAuth Bot Token Scopes
+    1)app_mention:read
+    2)channels:join
+    3)channels:messages
+    4)channels:read
+    5)chat:write
+    6)chat:write.public
 
 #### Github Blogs
+
 ```sh
-	
+
 
 
 	1.$ cd/gitblog
-	2.$ npm install 
+	2.$ npm install
 	3.configure the value of the environment variable  SLACK_TOKENGIT
 	4.install the app to your workspace
 	5.add the app to the channel in which you want to deploy the app
 
-	6.now in ./gitroute.js add the following line at the end of code 
+	6.now in ./gitroute.js add the following line at the end of code
 	  slackpost(<channel id>,`https://github.blog/category/community/open-source/`);
 	  	  	<channel id>is the id of the channel of your workspace in whivh you want to deploy the bot
 	  for eg:-
@@ -76,17 +67,15 @@ npm install
 	7.now execute the script gitroute.js using the command
 		$node gitroute.js
 	8.The posts of the github blogs of that current day will be posted
-	
-```
 
+```
 
 ## Author
 
 👤 **Ujjwal Agarwal**
 
-* Github: [@specter25](https://github.com/specter25)
-* LinkedIn: [@ujjwalagarwal](https://linkedin.com/in/agarwalujjwal012)
-
+- Github: [@specter25](https://github.com/specter25)
+- LinkedIn: [@ujjwalagarwal](https://linkedin.com/in/agarwalujjwal012)
 
 ## Show your support
 
@@ -96,4 +85,3 @@ Give a ⭐️ if this project helped you!
 
 Copyright © 2020 [Ujjwal Agarwal](https://github.com/specter25).<br />
 This project is [MIT](https://github.com/developer-student-club-thapar/slack-bots/blob/master/LICENSE) licensed.
-
