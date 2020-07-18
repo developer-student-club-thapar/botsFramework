@@ -17,7 +17,7 @@ const imagearray= [
   `https://res.cloudinary.com/practicaldev/image/fetch/s--Yqli_sbS--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://res.cloudinary.com/practicaldev/image/fetch/s--l6trFpAr--/c_imagga_scale%2Cf_auto%2Cfl_progressive%2Ch_420%2Cq_auto%2Cw_1000/https://dev-to-uploads.s3.amazonaws.com/i/heyd00lvp6suotl3sp30.png`,
   `https://res.cloudinary.com/practicaldev/image/fetch/s--cRdcm120--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/d7lbgx001ig05pscz9b2.jpg`,
   `https://res.cloudinary.com/practicaldev/image/fetch/s--Wxf53RB8--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/n2rlhk6kom4qnc0btsbj.png`,
-  `https://res.cloudinary.com/practicaldev/image/fetch/s--laLllAHw--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://res.cloudinary.com/practicaldev/image/fetch/s--mMWKJkd2--/c_imagga_scale%2Cf_auto%2Cfl_progressive%2Ch_420%2Cq_auto%2Cw_1000/https://dev-to-uploads.s3.amazonaws.com/i/dxigx5y0mlbgjuuuhze6.png`,
+
   
   ]
 
