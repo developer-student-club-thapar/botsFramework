@@ -30,7 +30,7 @@ slackeventsapi==2.1.0
 soupsieve==2.0.1
 toml==0.10.1
 urllib3==1.25.9
-virtualenv==20.0.20
+virtualenv==20.0.31
 websocket-client==0.57.0
 Werkzeug==1.0.1
 yarl==1.4.2
