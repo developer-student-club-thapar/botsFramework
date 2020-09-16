@@ -1,5 +1,5 @@
 from scraper.scraping import tag_search_scrape, search_scrape
-from secrets import secrets
+import secrets
 
 
 from flask import Flask, Response
