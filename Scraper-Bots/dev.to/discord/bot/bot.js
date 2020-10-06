@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const { fetchdevblogs, fetchdevblogsimages } = require("../devto");
 
-bot_secret_token = process.env.BOTDEVTOKEN;
+const bot_secret_token = process.env.BOTDEVTOKEN;
 
 const discordpost = (url, channel) => {
   client.on("ready", () => {
