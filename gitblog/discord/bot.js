@@ -2,39 +2,9 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const { fetchblogs, fetchblogsimages }  = require("./gitblog");
 
-const bot_secret_token = process.env.BOTDEVTOKEN;
+const bot_secret_token =  process.env.BOTDEVTOKEN;
 
-
-const web = new WebClient(token);
-
-const slackpost = async (channel, url) => {
-
-  const conversationId = channel;
-
-  (async () => {
-    let res;
-
-    fetchblogs(url).then(async ({ blocks, arr }) => {
-
-
-      for (let index = 0; index < 5; index++) {
-        const element = arr[index];
-        const image = await fetchblogsimages(element);
-
-        console.log(index * 5 + 5+ "th block");
-        console.log(blocks[index * 5 + 5]);
-        if (blocks[index * 5 + 5]["image_url"] && image) {
-          blocks[index * 5 + 5]["image_url"] = image;
-        }
-      }
-
-      res = await web.chat.postMessage({ channel: conversationId, blocks });
-    });
-
-  })();
-};
-
-const discordpost = (url, channel) => {
+const discordpost = (url= 'https://github.blog/', channel='757160073255714828') => {
     client.on("ready", () => {
       console.log("Connected as " + client.user.tag);
   
@@ -42,10 +12,11 @@ const discordpost = (url, channel) => {
   
       var generalChannel = client.channels.cache.get(channel);
   
-      fetchdevblogs(url).then(async ({ blocks, arr }) => {
-        for (let index = 0; index < 5; index++) {
+      fetchblogs(url).then(async ({ blocks, arr }) => {
+        console.log(blocks);
+        for (let index = 0; index < blocks.length ; index++) {
           const element = arr[index];
-          const image = await fetchdevblogsimages(element);
+          const image = await fetchblogsimages(element);
   
           if (blocks[index].image && image) {
             blocks[index].image = image;
@@ -54,15 +25,15 @@ const discordpost = (url, channel) => {
   
           const exampleEmbed = {
             color: 0x0099ff,
-            title: blocks[index].pcontent,
+            title: blocks[index].pheading,
             url: `${blocks[index].plink}`,
-            description: blocks[index].tags,
-            fields: [
-              {
-                name: blocks[index].reading,
-                value: `${blocks[index].likes}   :heart:`,
-              },
-            ],
+            description: blocks[index].pdesc,
+            // fields: [
+            //   {
+            //     name: blocks[index].reading,
+            //     value: `${blocks[index].likes}   :heart:`,
+            //   },
+            // ],
             image: {
               url: blocks[index].image,
             },
@@ -74,8 +45,6 @@ const discordpost = (url, channel) => {
   
           generalChannel.send({ embed: exampleEmbed });
         }
-  
-        // res = await web.chat.postMessage({ channel: conversationId, blocks });
       });
     });
   };
@@ -84,9 +53,3 @@ const discordpost = (url, channel) => {
   
   module.exports = discordpost;
   
-
-
-
-
-
-module.exports = slackpost;

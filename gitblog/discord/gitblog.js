@@ -32,6 +32,7 @@ const fetchblogs = async (url) => {
   return rp(options)
     .then(($) => {
       // console.log($);
+      console.log(" process started");
       let blocks = [];
       
       $(".post-item").each(function (index) {
