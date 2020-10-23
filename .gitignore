@@ -8,3 +8,4 @@ Telegram/cred.txt
 Medium/secrets/secrets.py
 Client_Secret.json
 credentials
+env/

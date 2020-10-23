@@ -6,7 +6,6 @@ moment().format();
 const rp = require("request-promise");
 let c = 0;
 
-
 const imagearray = [
   `https://res.cloudinary.com/practicaldev/image/fetch/s--r4ufmV36--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/507txwsd96h40908yunu.png`,
   `https://res.cloudinary.com/practicaldev/image/fetch/s--j0Oq-v5L--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://res.cloudinary.com/practicaldev/image/fetch/s--OubmiFAB--/c_imagga_scale%2Cf_auto%2Cfl_progressive%2Ch_420%2Cq_auto%2Cw_1000/https://dev-to-uploads.s3.amazonaws.com/i/aiyaelf1rroed1znn3d4.jpg`,
@@ -16,8 +15,6 @@ const imagearray = [
   `https://res.cloudinary.com/practicaldev/image/fetch/s--Wxf53RB8--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/n2rlhk6kom4qnc0btsbj.png`,
   `https://res.cloudinary.com/practicaldev/image/fetch/s--laLllAHw--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://res.cloudinary.com/practicaldev/image/fetch/s--mMWKJkd2--/c_imagga_scale%2Cf_auto%2Cfl_progressive%2Ch_420%2Cq_auto%2Cw_1000/https://dev-to-uploads.s3.amazonaws.com/i/dxigx5y0mlbgjuuuhze6.png`,
 ];
-
-
 
 const fetchblogs = async (url) => {
   let plink;
@@ -34,9 +31,8 @@ const fetchblogs = async (url) => {
       // console.log($);
       console.log(" process started");
       let blocks = [];
-      
-      $(".post-item").each(function (index) {
 
+      $(".post-item").each(function (index) {
         c = c + 1;
         const currentdate = Date.now();
         const date = $(this)
@@ -54,21 +50,21 @@ const fetchblogs = async (url) => {
         final = `${final}${"\n"}${date}   ${pheading}${"\n"}${plink}${"\n"}${pdesc}${"\n"}------------${"\n"}`;
         // moment(currentdate).format('YYYY-MM-DD')
         // if (moment(currentdate).format("YYYY-MM-DD") === date) {
-          if (c < 7) {
+        if (c < 7) {
           // console.log(date);
           // console.log(`title :${pheading}`);
           // console.log(`link:${plink}`);
           // console.log(`description :${pdesc}`);
           // console.log('------------------------------------------------------',);
           arr.push(`${plink}`);
-          
-          const content ={
+
+          const content = {
             plink,
             pheading,
             pdesc,
             date,
-            image: imagearray[Math.floor(Math.random() * 7)]
-          }
+            image: imagearray[Math.floor(Math.random() * 7)],
+          };
 
           blocks.push(content);
         }
@@ -92,8 +88,6 @@ const fetchblogs = async (url) => {
       console.log(err);
     });
 };
-
-
 
 const img = {};
 

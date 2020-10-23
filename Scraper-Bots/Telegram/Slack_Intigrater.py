@@ -1,9 +1,9 @@
 from slacker import Slacker
 import decimal
 import json
-from cred import *
+from cred import *  # noqa
 
-slack = Slacker(Slack_token)
+slack = Slacker(Slack_token)  # noqa
 metadata = [[decimal.Decimal("1589701276.001300"), "C011P8QDCR1"]]
 
 
@@ -16,16 +16,12 @@ def Serve_Slack(message):
     for i in range(len(message)):
         if message[i][2] in Update_ID:
             Update_ID.pop(0)
-            obj = slack.chat.post_message(Slack_Channel1, message[i][0])
+            obj = slack.chat.post_message(Slack_Channel1, message[i][0])  # noqa
             slack.reactions.add(
-                "+1",
-                channel=obj.__dict__["body"]["channel"],
-                timestamp=decimal.Decimal(obj.__dict__["body"]["ts"]),
+                "+1", channel=obj.__dict__["body"]["channel"], timestamp=decimal.Decimal(obj.__dict__["body"]["ts"]),
             )
             slack.reactions.add(
-                "-1",
-                channel=obj.__dict__["body"]["channel"],
-                timestamp=decimal.Decimal(obj.__dict__["body"]["ts"]),
+                "-1", channel=obj.__dict__["body"]["channel"], timestamp=decimal.Decimal(obj.__dict__["body"]["ts"]),
             )
             message[i].append((obj.__dict__["body"]["ts"]))
             message[i].append(obj.__dict__["body"]["channel"])
