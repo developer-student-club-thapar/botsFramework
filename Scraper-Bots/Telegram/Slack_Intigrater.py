@@ -18,10 +18,14 @@ def Serve_Slack(message):
             Update_ID.pop(0)
             obj = slack.chat.post_message(Slack_Channel1, message[i][0])  # noqa
             slack.reactions.add(
-                "+1", channel=obj.__dict__["body"]["channel"], timestamp=decimal.Decimal(obj.__dict__["body"]["ts"]),
+                "+1",
+                channel=obj.__dict__["body"]["channel"],
+                timestamp=decimal.Decimal(obj.__dict__["body"]["ts"]),
             )
             slack.reactions.add(
-                "-1", channel=obj.__dict__["body"]["channel"], timestamp=decimal.Decimal(obj.__dict__["body"]["ts"]),
+                "-1",
+                channel=obj.__dict__["body"]["channel"],
+                timestamp=decimal.Decimal(obj.__dict__["body"]["ts"]),
             )
             message[i].append((obj.__dict__["body"]["ts"]))
             message[i].append(obj.__dict__["body"]["channel"])

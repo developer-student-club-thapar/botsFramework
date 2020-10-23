@@ -76,7 +76,13 @@ def handle_message(event_data):
                             },
                         },
                         {"type": "divider"},
-                        {"type": "section", "text": {"type": "mrkdwn", "text": "➕ To start searching, *add me to a channel*",},},  # noqa
+                        {
+                            "type": "section",
+                            "text": {
+                                "type": "mrkdwn",
+                                "text": "➕ To start searching, *add me to a channel*",
+                            },
+                        },  # noqa
                     ],
                 )
             elif "tag" in message.get("text"):
@@ -85,7 +91,8 @@ def handle_message(event_data):
                 i = 0
 
                 slack_client.chat_postMessage(
-                    channel=channel_id, text=f"Here are your results for *{criteria}*",  # noqa
+                    channel=channel_id,
+                    text=f"Here are your results for *{criteria}*",  # noqa
                 )
 
                 for article in result:
@@ -95,17 +102,54 @@ def handle_message(event_data):
                         slack_client.chat_postMessage(
                             channel=channel_id,
                             blocks=[
-                                {"type": "section", "text": {"type": "mrkdwn", "text": f"*<{result[i]['link']}|{result[i]['title']}>* ",},},  # noqa
-                                {"type": "context", "elements": [{"type": "mrkdwn", "text": f"* By {result[i]['author']}* \n{result[i]['read_time']}",}],},  # noqa
-                                {"type": "image", "title": {"type": "plain_text", "text": "Image", "emoji": True,}, "image_url": f"{result[i]['img']}", "alt_text": "Image",},  # noqa
+                                {
+                                    "type": "section",
+                                    "text": {
+                                        "type": "mrkdwn",
+                                        "text": f"*<{result[i]['link']}|{result[i]['title']}>* ",
+                                    },
+                                },  # noqa
+                                {
+                                    "type": "context",
+                                    "elements": [
+                                        {
+                                            "type": "mrkdwn",
+                                            "text": f"* By {result[i]['author']}* \n{result[i]['read_time']}",
+                                        }
+                                    ],
+                                },  # noqa
+                                {
+                                    "type": "image",
+                                    "title": {
+                                        "type": "plain_text",
+                                        "text": "Image",
+                                        "emoji": True,
+                                    },
+                                    "image_url": f"{result[i]['img']}",
+                                    "alt_text": "Image",
+                                },  # noqa
                             ],
                         )
                     else:
                         slack_client.chat_postMessage(
                             channel=channel_id,
                             blocks=[
-                                {"type": "section", "text": {"type": "mrkdwn", "text": f"*<{result[i].link}|{result[i].title}>* ",},},  # noqa
-                                {"type": "context", "elements": [{"type": "mrkdwn", "text": f"* By {result[i].author}* \n{result[i].read_time}",}],},  # noqa
+                                {
+                                    "type": "section",
+                                    "text": {
+                                        "type": "mrkdwn",
+                                        "text": f"*<{result[i].link}|{result[i].title}>* ",
+                                    },
+                                },  # noqa
+                                {
+                                    "type": "context",
+                                    "elements": [
+                                        {
+                                            "type": "mrkdwn",
+                                            "text": f"* By {result[i].author}* \n{result[i].read_time}",
+                                        }
+                                    ],
+                                },  # noqa
                             ],
                         )
                     i += 1
@@ -117,7 +161,8 @@ def handle_message(event_data):
                 i = 0
 
                 slack_client.chat_postMessage(
-                    channel=channel_id, text=f"Here are your results for *{criteria}*",  # noqa
+                    channel=channel_id,
+                    text=f"Here are your results for *{criteria}*",  # noqa
                 )
 
                 for article in result:
@@ -125,17 +170,54 @@ def handle_message(event_data):
                         slack_client.chat_postMessage(
                             channel=channel_id,
                             blocks=[
-                                {"type": "section", "text": {"type": "mrkdwn", "text": f"*<{result[i]['link']}|{result[i]['title']}>* ",},},  # noqa
-                                {"type": "context", "elements": [{"type": "mrkdwn", "text": f"* By {result[i]['author']}* \n{result[i]['read_time']}",}],},  # noqa
-                                {"type": "image", "title": {"type": "plain_text", "text": "Image", "emoji": True,}, "image_url": f"{result[i]['img']}", "alt_text": "Image",},  # noqa
+                                {
+                                    "type": "section",
+                                    "text": {
+                                        "type": "mrkdwn",
+                                        "text": f"*<{result[i]['link']}|{result[i]['title']}>* ",
+                                    },
+                                },  # noqa
+                                {
+                                    "type": "context",
+                                    "elements": [
+                                        {
+                                            "type": "mrkdwn",
+                                            "text": f"* By {result[i]['author']}* \n{result[i]['read_time']}",
+                                        }
+                                    ],
+                                },  # noqa
+                                {
+                                    "type": "image",
+                                    "title": {
+                                        "type": "plain_text",
+                                        "text": "Image",
+                                        "emoji": True,
+                                    },
+                                    "image_url": f"{result[i]['img']}",
+                                    "alt_text": "Image",
+                                },  # noqa
                             ],
                         )
                     else:
                         slack_client.chat_postMessage(
                             channel=channel_id,
                             blocks=[
-                                {"type": "section", "text": {"type": "mrkdwn", "text": f"*<{result[i].link}|{result[i].title}>* ",},},  # noqa
-                                {"type": "context", "elements": [{"type": "mrkdwn", "text": f"* By {result[i].author}* \n{result[i].read_time}",}],},  # noqa
+                                {
+                                    "type": "section",
+                                    "text": {
+                                        "type": "mrkdwn",
+                                        "text": f"*<{result[i].link}|{result[i].title}>* ",
+                                    },
+                                },  # noqa
+                                {
+                                    "type": "context",
+                                    "elements": [
+                                        {
+                                            "type": "mrkdwn",
+                                            "text": f"* By {result[i].author}* \n{result[i].read_time}",
+                                        }
+                                    ],
+                                },  # noqa
                             ],
                         )
                     i += 1

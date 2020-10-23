@@ -10,7 +10,11 @@ def tag_search_scrape(tag):
     id = 1
     iter = 0
 
-    for content, author_con, part in zip(soup.findAll("div", class_="section-content"), soup.findAll("div", class_="postMetaInline-authorLockup"), soup.findAll("div", class_="postArticle-readMore"),):
+    for content, author_con, part in zip(
+        soup.findAll("div", class_="section-content"),
+        soup.findAll("div", class_="postMetaInline-authorLockup"),
+        soup.findAll("div", class_="postArticle-readMore"),
+    ):
         if iter == 3:
             break
         try:
@@ -27,7 +31,14 @@ def tag_search_scrape(tag):
         read_time = author_con.find("span", class_="readingTime")["title"]
 
         data.append(
-            {"id": id, "title": title, "img": img, "link": link, "author": author, "read_time": read_time,}
+            {
+                "id": id,
+                "title": title,
+                "img": img,
+                "link": link,
+                "author": author,
+                "read_time": read_time,
+            }
         )
 
         id += 1
@@ -42,7 +53,11 @@ def search_scrape(search, num):
     data = []
     id = 1
 
-    for content, author_con, part in zip(soup.findAll("div", class_="section-content"), soup.findAll("div", class_="postMetaInline-authorLockup"), soup.findAll("div", class_="postArticle-readMore"),):
+    for content, author_con, part in zip(
+        soup.findAll("div", class_="section-content"),
+        soup.findAll("div", class_="postMetaInline-authorLockup"),
+        soup.findAll("div", class_="postArticle-readMore"),
+    ):
         if id == (int(num) + 1):
             break
         try:
@@ -59,7 +74,14 @@ def search_scrape(search, num):
         read_time = author_con.find("span", class_="readingTime")["title"]
 
         data.append(
-            {"id": id, "title": title, "img": img, "link": link, "author": author, "read_time": read_time,}
+            {
+                "id": id,
+                "title": title,
+                "img": img,
+                "link": link,
+                "author": author,
+                "read_time": read_time,
+            }
         )
         id += 1
 
