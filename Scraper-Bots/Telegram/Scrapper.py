@@ -1,13 +1,13 @@
 import json
 import requests
-from cred import *
+from cred import *  # noqa
 
 # TOKEN= manually add your bots token
 # CHAT_ID= manualy add "-" before chat IDs for groups
 
 message = []
 Black_List = ["twitter.com", "//t.me/"]
-URL = "https://api.telegram.org/bot{}/".format(TOKEN1)
+URL = "https://api.telegram.org/bot{}/".format(TOKEN1)  # noqa
 
 
 def remove_dublicate(message):
@@ -57,7 +57,7 @@ def contain_url(updates):
     num_updates = len(updates["result"])
     for i in range(num_updates - 1, -1, -1):
         try:
-            if updates["result"][i]["message"]["chat"]["id"] == CHAT_ID1:
+            if updates["result"][i]["message"]["chat"]["id"] == CHAT_ID1:  # noqa
                 entities = updates["result"][i]["message"]["entities"]
         except KeyError:
             pass
@@ -66,15 +66,9 @@ def contain_url(updates):
                 if updates["result"][i]["message"]["entities"][j]["type"] == "url":
                     offset = updates["result"][i]["message"]["entities"][j]["offset"]
                     length = updates["result"][i]["message"]["entities"][j]["length"]
-                    text_s = (
-                        updates["result"][i]["message"]["text"]
-                        .encode("ascii", "ignore")
-                        .decode("ascii")
-                    )
-                    url = text_s[offset : offset + length]
-                    text_entities = updates["result"][i]["message"]["entities"][j][
-                        "type"
-                    ]
+                    text_s = updates["result"][i]["message"]["text"].encode("ascii", "ignore").decode("ascii")
+                    url = text_s[(offset) : offset + length]  # noqa
+                    text_entities = updates["result"][i]["message"]["entities"][j]["type"]
                     input_data = [
                         text_s,
                         url,
@@ -83,31 +77,18 @@ def contain_url(updates):
                     if input_data not in message:
                         message.append(input_data[:])
         try:
-            if updates["result"][i]["message"]["chat"]["id"] == CHAT_ID1:
+            if updates["result"][i]["message"]["chat"]["id"] == CHAT_ID1:  # noqa
                 entities = updates["result"][i]["message"]["caption_entities"]
         except KeyError:
             pass
         else:
             for j in range(0, len(updates["result"][i]["message"]["caption_entities"])):
-                if (
-                    updates["result"][i]["message"]["caption_entities"][j]["type"]
-                    == "url"
-                ):
-                    offset = updates["result"][i]["message"]["caption_entities"][j][
-                        "offset"
-                    ]
-                    length = updates["result"][i]["message"]["caption_entities"][j][
-                        "length"
-                    ]
-                    text_s = (
-                        updates["result"][i]["message"]["caption"]
-                        .encode("ascii", "ignore")
-                        .decode("ascii")
-                    )
-                    url = text_s[offset - 2 : offset + length + 3]
-                    text_entities = updates["result"][i]["message"]["caption_entities"][
-                        j
-                    ]["type"]
+                if updates["result"][i]["message"]["caption_entities"][j]["type"] == "url":
+                    offset = updates["result"][i]["message"]["caption_entities"][j]["offset"]
+                    length = updates["result"][i]["message"]["caption_entities"][j]["length"]
+                    text_s = updates["result"][i]["message"]["caption"].encode("ascii", "ignore").decode("ascii")
+                    url = text_s[(offset - 2) : offset + length + 3]  # noqa
+                    text_entities = updates["result"][i]["message"]["caption_entities"][j]["type"]
                     input_data = [
                         text_s,
                         url,

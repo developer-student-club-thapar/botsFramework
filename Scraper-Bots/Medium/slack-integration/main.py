@@ -35,9 +35,7 @@ def event_hook(request):
     return
 
 
-slack_events_adapter = SlackEventAdapter(
-    SLACK_SIGNING_SECRET, "/slack/events", app
-)  # noqa
+slack_events_adapter = SlackEventAdapter(SLACK_SIGNING_SECRET, "/slack/events", app)  # noqa
 
 
 @slack_events_adapter.on("app_mention")
@@ -49,10 +47,7 @@ def handle_message(event_data):
             command = message.get("text")
             channel_id = message["channel"]
             if any(item in command.lower() for item in greetings):
-                message = (
-                    "Hello <@%s>! :tada:\nTry *What can you do?*"
-                    % message["user"]  # noqa
-                )
+                message = "Hello <@%s>! :tada:\nTry *What can you do?*" % message["user"]  # noqa
                 slack_client.chat_postMessage(channel=channel_id, text=message)
             elif startup_comm in command.lower():
                 slack_client.chat_postMessage(
@@ -85,9 +80,9 @@ def handle_message(event_data):
                             "type": "section",
                             "text": {
                                 "type": "mrkdwn",
-                                "text": "➕ To start searching, *add me to a channel*",  # noqa
+                                "text": "➕ To start searching, *add me to a channel*",
                             },
-                        },
+                        },  # noqa
                     ],
                 )
             elif "tag" in message.get("text"):
@@ -111,28 +106,28 @@ def handle_message(event_data):
                                     "type": "section",
                                     "text": {
                                         "type": "mrkdwn",
-                                        "text": f"*<{result[i]['link']}|{result[i]['title']}>* ",  # noqa
+                                        "text": f"*<{result[i]['link']}|{result[i]['title']}>* ",
                                     },
-                                },
+                                },  # noqa
                                 {
                                     "type": "context",
                                     "elements": [
                                         {
                                             "type": "mrkdwn",
-                                            "text": f"* By {result[i]['author']}* \n{result[i]['read_time']}",  # noqa
+                                            "text": f"* By {result[i]['author']}* \n{result[i]['read_time']}",
                                         }
                                     ],
-                                },
+                                },  # noqa
                                 {
                                     "type": "image",
                                     "title": {
                                         "type": "plain_text",
                                         "text": "Image",
                                         "emoji": True,
-                                    },  # noqa
+                                    },
                                     "image_url": f"{result[i]['img']}",
                                     "alt_text": "Image",
-                                },
+                                },  # noqa
                             ],
                         )
                     else:
@@ -143,18 +138,18 @@ def handle_message(event_data):
                                     "type": "section",
                                     "text": {
                                         "type": "mrkdwn",
-                                        "text": f"*<{result[i].link}|{result[i].title}>* ",  # noqa
+                                        "text": f"*<{result[i].link}|{result[i].title}>* ",
                                     },
-                                },
+                                },  # noqa
                                 {
                                     "type": "context",
                                     "elements": [
                                         {
                                             "type": "mrkdwn",
-                                            "text": f"* By {result[i].author}* \n{result[i].read_time}",  # noqa
+                                            "text": f"* By {result[i].author}* \n{result[i].read_time}",
                                         }
                                     ],
-                                },
+                                },  # noqa
                             ],
                         )
                     i += 1
@@ -179,28 +174,28 @@ def handle_message(event_data):
                                     "type": "section",
                                     "text": {
                                         "type": "mrkdwn",
-                                        "text": f"*<{result[i]['link']}|{result[i]['title']}>* ",  # noqa
+                                        "text": f"*<{result[i]['link']}|{result[i]['title']}>* ",
                                     },
-                                },
+                                },  # noqa
                                 {
                                     "type": "context",
                                     "elements": [
                                         {
                                             "type": "mrkdwn",
-                                            "text": f"* By {result[i]['author']}* \n{result[i]['read_time']}",  # noqa
+                                            "text": f"* By {result[i]['author']}* \n{result[i]['read_time']}",
                                         }
                                     ],
-                                },
+                                },  # noqa
                                 {
                                     "type": "image",
                                     "title": {
                                         "type": "plain_text",
                                         "text": "Image",
                                         "emoji": True,
-                                    },  # noqa
+                                    },
                                     "image_url": f"{result[i]['img']}",
                                     "alt_text": "Image",
-                                },
+                                },  # noqa
                             ],
                         )
                     else:
@@ -211,18 +206,18 @@ def handle_message(event_data):
                                     "type": "section",
                                     "text": {
                                         "type": "mrkdwn",
-                                        "text": f"*<{result[i].link}|{result[i].title}>* ",  # noqa
+                                        "text": f"*<{result[i].link}|{result[i].title}>* ",
                                     },
-                                },
+                                },  # noqa
                                 {
                                     "type": "context",
                                     "elements": [
                                         {
                                             "type": "mrkdwn",
-                                            "text": f"* By {result[i].author}* \n{result[i].read_time}",  # noqa
+                                            "text": f"* By {result[i].author}* \n{result[i].read_time}",
                                         }
                                     ],
-                                },
+                                },  # noqa
                             ],
                         )
                     i += 1
